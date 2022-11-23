@@ -1,22 +1,22 @@
 package generic;
 
-public abstract class Aeronaves {
+public abstract class Aeronave {
     
     private int id;
     private String marca;
     private String modelo;
 
-    public Aeronaves() {
+    public Aeronave() {
 
     }
 
-    public Aeronaves(int id, String marca, String modelo) {
+    public Aeronave(int id, String marca, String modelo) {
         this.id = id;
         this.marca = marca; 
         this.modelo = modelo;
     }
 
-    public Aeronaves(String marca, String modelo) {
+    public Aeronave(String marca, String modelo) {
         this.marca = marca; 
         this.modelo = modelo;
     } 
