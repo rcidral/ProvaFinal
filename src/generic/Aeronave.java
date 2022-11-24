@@ -41,7 +41,16 @@ public abstract class Aeronave {
         this.modelo = modelo;
     }
 
-    public String getModleo() {
+    public String getModelo() {
         return modelo;
+    }
+
+    @Override
+    public String toString() {
+        return this.toString();
+    }
+
+    public boolean equals(Object obj) {
+        return true;
     }
 }
