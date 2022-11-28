@@ -1,6 +1,8 @@
-package generic;
+package models;
 
-public class Companhia {
+import generic.*;
+
+public abstract class Companhia implements Database{
     
     private int id;
     private String nome;
@@ -47,11 +49,25 @@ public class Companhia {
 
     @Override
     public String toString() {
-        return this.toString();
+        return "Companhia [id=" + id + ", nome=" + nome + ", cnpj=" + cnpj + "]";
     }
 
     public boolean equals(Object obj) {
-        return true;
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        if (obj.getClass() != getClass()) {
+            return false;
+        }
+        Companhia c = (Companhia) obj;
+        return c.getId() == this.getId();
+    }
+
+    public static Companhia getById(int id) {
+        return new Companhia();
     }
 
     public void update() {
@@ -60,9 +76,5 @@ public class Companhia {
 
     public void delete() {
 
-    }
-
-    public static Companhia getById(int id) {
-        return new Companhia();
     }
 }

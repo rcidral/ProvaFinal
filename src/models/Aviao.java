@@ -3,7 +3,7 @@ package models;
 import generic.*;
 
 
-public class Aviao extends Aeronave{
+public class Aviao extends Aeromodelo{
 
     private String prefixo;
     private int capacidade;

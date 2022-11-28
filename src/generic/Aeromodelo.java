@@ -1,22 +1,22 @@
 package generic;
 
-public abstract class Aeronave {
+public abstract class Aeromodelo implements Database{
     
     private int id;
     private String marca;
     private String modelo;
 
-    public Aeronave() {
+    public Aeromodelo() {
 
     }
 
-    public Aeronave(int id, String marca, String modelo) {
+    public Aeromodelo(int id, String marca, String modelo) {
         this.id = id;
         this.marca = marca; 
         this.modelo = modelo;
     }
 
-    public Aeronave(String marca, String modelo) {
+    public Aeromodelo(String marca, String modelo) {
         this.marca = marca; 
         this.modelo = modelo;
     } 
@@ -47,10 +47,20 @@ public abstract class Aeronave {
 
     @Override
     public String toString() {
-        return this.toString();
+        return "Aeronave [id=" + id + ", marca=" + marca + ", modelo=" + modelo + "]";
     }
 
     public boolean equals(Object obj) {
-        return true;
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        if (obj.getClass() != getClass()) {
+            return false;
+        }
+        Aeromodelo aeronave = (Aeromodelo) obj;
+        return aeronave.getId() == getId();
     }
 }
