@@ -2,6 +2,12 @@ package models;
 
 import generic.Aeromodelo;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import DAO.DAO;
+
 public class Helicoptero extends Aeromodelo{
     
     private String cor;
@@ -11,16 +17,37 @@ public class Helicoptero extends Aeromodelo{
 
     }
 
-    public Helicoptero(int id, String marca, String modelo, String cor, int capacidade) {
+    public Helicoptero(int id, String marca, String modelo, String cor, int capacidade) throws Exception {
         super(id, marca, modelo);
         this.cor = cor;
         this.capacidade = capacidade;
+
+        PreparedStatement stmt = DAO.createConnection().prepareStatement(
+            "INSERT INTO helicoptero (id, marca, modelo, cor, capacidade) VALUES (?, ?, ?, ?, ?);"
+        );
+        stmt.setInt(1, id);
+        stmt.setString(2, marca);
+        stmt.setString(3, modelo);
+        stmt.setString(4, cor);
+        stmt.setInt(5, capacidade);
+        stmt.execute();
+        stmt.close();
     }
 
-    public Helicoptero(String marca, String modelo, String cor, int capacidade) {
+    public Helicoptero(String marca, String modelo, String cor, int capacidade) throws Exception {
         super(marca, modelo);
         this.cor = cor;
         this.capacidade = capacidade;
+
+        PreparedStatement stmt = DAO.createConnection().prepareStatement(
+            "INSERT INTO helicoptero (marca, modelo, cor, capacidade) VALUES (?, ?, ?, ?);"
+        );
+        stmt.setString(1, marca);
+        stmt.setString(2, modelo);
+        stmt.setString(3, cor);
+        stmt.setInt(4, capacidade);
+        stmt.execute();
+        stmt.close();
     }
 
     public void setCor(String cor) {
@@ -58,12 +85,40 @@ public class Helicoptero extends Aeromodelo{
         return heli.getId() == getId();
     }
 
+    public static void select() throws Exception {
+        Connection select = DAO.createConnection();
+        ResultSet rs = select.createStatement().executeQuery(
+            "SELECT * FROM helicoptero;"
+        );
+        while (rs.next()) {
+            System.out.println(
+                "=======================================" + "\n" +
+                "Id: " + 
+                rs.getInt("id") + "\n" +
+                "Marca: " +
+                rs.getString("marca") + "\n" +
+                "Modelo: " +
+                rs.getString("modelo") + "\n" +
+                "Cor: " +
+                rs.getString("cor") + "\n" +
+                "Capacidade: " +
+                rs.getInt("capacidade") + "\n" +
+                "======================================="
+            );
+        }
+        select.close();
+    }
+
     public void update() {
 
     }
 
     public void delete() {
 
+    }
+
+    public static Helicoptero getById(int id) {
+        return new Helicoptero();
     }
 
 }

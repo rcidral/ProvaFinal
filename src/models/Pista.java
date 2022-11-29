@@ -2,7 +2,13 @@ package models;
 
 import generic.*;
 
-public abstract class Pista implements Database{
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import DAO.DAO;
+
+public class Pista implements Database{
     
     private int id;
     private String numero;
@@ -11,13 +17,28 @@ public abstract class Pista implements Database{
 
     }
 
-    public Pista(int id, String numero) {
+    public Pista(int id, String numero) throws Exception {
         this.id = id;
         this.numero = numero;
+
+        PreparedStatement stmt = DAO.createConnection().prepareStatement(
+            "INSERT INTO pista (id, numero) VALUES (?, ?);"
+        );
+        stmt.setInt(1, id);
+        stmt.setString(2, numero);
+        stmt.execute();
+        stmt.close();
     }
 
-    public Pista(String numero) {
+    public Pista(String numero) throws Exception {
         this.numero = numero;
+
+        PreparedStatement stmt = DAO.createConnection().prepareStatement(
+            "INSERT INTO pista (numero) VALUES (?);"
+        );
+        stmt.setString(1, numero);
+        stmt.execute();
+        stmt.close();
     }
 
     public void setId(int id) {
@@ -53,5 +74,32 @@ public abstract class Pista implements Database{
         }
         Pista p = (Pista) obj;
         return p.getId() == this.getId();
+    }
+
+    public static void select() throws Exception {
+        Connection select = DAO.createConnection();
+        ResultSet rs = select.createStatement().executeQuery(
+            "SELECT * FROM pista;"
+        );    
+        while (rs.next()) {
+            System.out.println(
+                "=======================================" + "\n" +
+                "Id: " + 
+                rs.getInt("id") + "\n" +
+                "Numero: " +  
+                rs.getString("numero") + "\n" + 
+                "=======================================");
+        }
+    }
+
+    public void update() {
+
+    }
+    public void delete() {
+
+    }
+
+    public static Pista getById(int id) {
+        return new Pista();
     }
 }
