@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 import models.*;
 
 public class App {
@@ -212,6 +213,101 @@ public class App {
                             op = 9;
                         }
                     } while (op != 0);
+                    break;
+                }
+                case 4: {
+                    do {
+                        System.out.println("1 - Excluir Avião");
+                        System.out.println("2 - Excluir Helicóptero");
+                        System.out.println("3 - Excluir Jato");
+                        System.out.println("4 - Excluir Hangar");
+                        System.out.println("5 - Excluir Pista");
+                        System.out.println("6 - Excluir Voo");
+                        System.out.println("7 - Excluir Companhia");
+                        System.out.println("0 - Voltar");
+                        try {
+                            op = scanner.nextInt();    
+                        } catch (Exception e) {
+                            op = 9;
+                        }
+                        switch(op) {
+                            case 1: {
+                                try {
+                                    System.out.println("Digite o id do avião que deseja excluir: ");
+                                    int id = scanner.nextInt();
+                                    Aviao.delete(id);
+                                } catch (Exception e) {
+                                    System.out.println("Erro ao excluir avião" + e.getMessage());
+                                }
+                                break;
+                            }
+                            case 2: {
+                                try {
+                                    System.out.println("Digite o id do helicóptero que deseja excluir: ");
+                                    int id = scanner.nextInt();
+                                    //Helicoptero.delete(id);
+                                } catch (Exception e) {
+                                    System.out.println("Erro ao excluir helicóptero" + e.getMessage());
+                                }
+                                break;
+                            }
+                            case 3: {
+                                try {
+                                    System.out.println("Digite o id do jato que deseja excluir: ");
+                                    int id = scanner.nextInt();
+                                    //Jato.delete(id);
+                                } catch (Exception e) {
+                                    System.out.println("Erro ao excluir jato" + e.getMessage());
+                                }
+                                break;
+                            }
+                            case 4: {
+                                try {
+                                    System.out.println("Digite o id do hangar que deseja excluir: ");
+                                    int id = scanner.nextInt();
+                                    //Hangar.delete(id);
+                                } catch (Exception e) {
+                                    System.out.println("Erro ao excluir hangar" + e.getMessage());
+                                }
+                                break;
+                            }
+                            case 5: {
+                                try {
+                                    System.out.println("Digite o id da pista que deseja excluir: ");
+                                    int id = scanner.nextInt();
+                                    //Pista.delete(id);
+                                } catch (Exception e) {
+                                    System.out.println("Erro ao excluir pista" + e.getMessage());
+                                }
+                                break;
+                            }
+                            case 6: {
+                                try {
+                                    System.out.println("Digite o id do voo que deseja excluir: ");
+                                    int id = scanner.nextInt();
+                                    //Voo.delete(id);
+                                } catch (Exception e) {
+                                    System.out.println("Erro ao excluir voo" + e.getMessage());
+                                }
+                                break;
+                            }
+                            case 7: {
+                                try {
+                                    System.out.println("Digite o id da companhia que deseja excluir: ");
+                                    int id = scanner.nextInt();
+                                    //Companhia.delete(id);
+                                } catch (Exception e) {
+                                    System.out.println("Erro ao excluir companhia" + e.getMessage());
+                                }
+                                break;
+                            }
+                            default: {
+                                System.out.println("Opção inválida.");
+                                break;
+                            }
+                        }
+                    } while (op != 0);
+                    break;
                 }
             }
         } while (op != 0);

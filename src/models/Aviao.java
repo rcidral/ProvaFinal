@@ -122,12 +122,19 @@ public class Aviao extends Aeromodelo{
         select.close();
     }
 
-    public void update(int id) {
+    public void update(int id) throws Exception{
 
     }
 
-    public void delete(int id) throws Exception{
-
+    public static void delete(int id) throws Exception{
+        Connection delete = DAO.createConnection();
+        PreparedStatement stmt = delete.prepareStatement(
+            "DELETE FROM aviao WHERE id = ?;"
+        );
+        stmt.setInt(1, id);
+        stmt.execute();
+        stmt.close();
+        delete.close();
     }
 
     public static Aviao getById(int id) {
