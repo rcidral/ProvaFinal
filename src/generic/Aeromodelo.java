@@ -1,6 +1,6 @@
 package generic;
 
-public abstract class Aeromodelo implements Database{
+public abstract class Aeromodelo {
     
     private int id;
     private String marca;

@@ -245,7 +245,7 @@ public class App {
                                 try {
                                     System.out.println("Digite o id do helicóptero que deseja excluir: ");
                                     int id = scanner.nextInt();
-                                    //Helicoptero.delete(id);
+                                    Helicoptero.delete(id);
                                 } catch (Exception e) {
                                     System.out.println("Erro ao excluir helicóptero" + e.getMessage());
                                 }
@@ -255,7 +255,7 @@ public class App {
                                 try {
                                     System.out.println("Digite o id do jato que deseja excluir: ");
                                     int id = scanner.nextInt();
-                                    //Jato.delete(id);
+                                    Jato.delete(id);
                                 } catch (Exception e) {
                                     System.out.println("Erro ao excluir jato" + e.getMessage());
                                 }
@@ -265,7 +265,7 @@ public class App {
                                 try {
                                     System.out.println("Digite o id do hangar que deseja excluir: ");
                                     int id = scanner.nextInt();
-                                    //Hangar.delete(id);
+                                    Hangar.delete(id);
                                 } catch (Exception e) {
                                     System.out.println("Erro ao excluir hangar" + e.getMessage());
                                 }
@@ -275,7 +275,7 @@ public class App {
                                 try {
                                     System.out.println("Digite o id da pista que deseja excluir: ");
                                     int id = scanner.nextInt();
-                                    //Pista.delete(id);
+                                    Pista.delete(id);
                                 } catch (Exception e) {
                                     System.out.println("Erro ao excluir pista" + e.getMessage());
                                 }
@@ -285,7 +285,7 @@ public class App {
                                 try {
                                     System.out.println("Digite o id do voo que deseja excluir: ");
                                     int id = scanner.nextInt();
-                                    //Voo.delete(id);
+                                    Voo.delete(id);
                                 } catch (Exception e) {
                                     System.out.println("Erro ao excluir voo" + e.getMessage());
                                 }
@@ -295,7 +295,7 @@ public class App {
                                 try {
                                     System.out.println("Digite o id da companhia que deseja excluir: ");
                                     int id = scanner.nextInt();
-                                    //Companhia.delete(id);
+                                    Companhia.delete(id);
                                 } catch (Exception e) {
                                     System.out.println("Erro ao excluir companhia" + e.getMessage());
                                 }

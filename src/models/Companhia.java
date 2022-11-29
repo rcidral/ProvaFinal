@@ -5,9 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import DAO.DAO;
-import generic.*;
 
-public class Companhia implements Database{
+public class Companhia {
     
     private int id;
     private String nome;
@@ -116,7 +115,14 @@ public class Companhia implements Database{
 
     }
 
-    public void delete(int id) {
-
+    public static void delete(int id) throws Exception {
+        Connection delete = DAO.createConnection();
+        PreparedStatement stmt = delete.prepareStatement(
+            "DELETE FROM companhia WHERE id = ?;"
+        );
+        stmt.setInt(1, id);
+        stmt.execute();
+        stmt.close();
+        delete.close();
     }
 }
