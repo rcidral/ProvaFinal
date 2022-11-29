@@ -10,7 +10,7 @@ public abstract class DAO {
 
     public static Connection createConnection() {
         try {
-            final String URL = "jdbc:mysql://localhost:3306/aeroportojf?useTimezone=true&serverTimezone=UTC";
+            final String URL = "jdbc:mysql://localhost:3306/aeroporto?useTimezone=true&serverTimezone=UTC";
             final String USER = "root";
             final String PASSWORD = "";
 

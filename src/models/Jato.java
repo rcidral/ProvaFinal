@@ -1,6 +1,8 @@
 package models;
 
 import generic.Aeromodelo;
+import java.sql.PreparedStatement;
+import DAO.DAO;
 
 public class Jato extends Aeromodelo{
     
@@ -11,16 +13,37 @@ public class Jato extends Aeromodelo{
 
     }
 
-    public Jato(int id, String marca, String modelo, String cor, int velocidade) {
+    public Jato(int id, String marca, String modelo, String cor, int velocidade) throws Exception {
         super(id, marca, modelo);
         this.cor = cor;
         this.velocidade = velocidade;
+
+        PreparedStatement stmt = DAO.createConnection().prepareStatement(
+            "INSERT INTO jato (id, marca, modelo, cor, velocidade) VALUES (?, ?, ?, ?, ?);"
+        );
+        stmt.setInt(1, id);
+        stmt.setString(2, marca);
+        stmt.setString(3, modelo);
+        stmt.setString(4, cor);
+        stmt.setInt(5, velocidade);
+        stmt.execute();
+        stmt.close();
     }
 
-    public Jato(String marca, String modelo, String cor, int velocidade) {
+    public Jato(String marca, String modelo, String cor, int velocidade) throws Exception {
         super(marca, modelo);
         this.cor = cor;
         this.velocidade = velocidade;
+
+        PreparedStatement stmt = DAO.createConnection().prepareStatement(
+            "INSERT INTO jato (marca, modelo, cor, velocidade) VALUES (?, ?, ?, ?);"
+        );
+        stmt.setString(1, marca);
+        stmt.setString(2, modelo);
+        stmt.setString(3, cor);
+        stmt.setInt(4, velocidade);
+        stmt.execute();
+        stmt.close();
     }
 
     public void setCor(String cor) {
@@ -64,5 +87,9 @@ public class Jato extends Aeromodelo{
 
     public void delete() {
 
+    }
+
+    public static Jato getById(int id) {
+        return new Jato();
     }
 }

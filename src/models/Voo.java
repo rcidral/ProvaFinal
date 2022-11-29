@@ -1,5 +1,8 @@
 package models;
 
+import java.sql.PreparedStatement;
+import DAO.DAO;
+
 public class Voo {
     
     private int id;
@@ -17,12 +20,14 @@ public class Voo {
     private Helicoptero helicoptero;
     private int idJato;
     private Jato jato; 
+    private int idAviao;
+    private Aviao aviao;
 
     public Voo() {
 
     }
 
-    public Voo(int id, String numero, String data, String hora, String origem, String destino, String piloto, String copiloto, String observacao, int idPista, Pista pista, int idHelicoptero, Helicoptero helicoptero, int idJato, Jato jato) {
+    public Voo(int id, String numero, String data, String hora, String origem, String destino, String piloto, String copiloto, String observacao, int idPista, Pista pista, int idHelicoptero, Helicoptero helicoptero, int idJato, Jato jato, int idAviao, Aviao aviao) throws Exception {
         this.id = id;
         this.numero = numero;
         this.data = data;
@@ -38,9 +43,31 @@ public class Voo {
         this.helicoptero = helicoptero;
         this.idJato = idJato;
         this.jato = jato;
+        this.idAviao = idAviao;
+        this.aviao = aviao;
+
+        PreparedStatement stmt = DAO.createConnection().prepareStatement(
+            "INSERT INTO voo (id, numero, data, hora, origem, destino, piloto, copiloto, observacao, pista_id, helicoptero_id, jato_id, aviao_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+        );
+        stmt.setInt(1, id);
+        stmt.setString(2, numero);
+        stmt.setString(3, data);
+        stmt.setString(4, hora);
+        stmt.setString(5, origem);
+        stmt.setString(6, destino);
+        stmt.setString(7, piloto);
+        stmt.setString(8, copiloto);
+        stmt.setString(9, observacao);
+        stmt.setInt(10, idPista);
+        stmt.setInt(11, idHelicoptero);
+        stmt.setInt(12, idJato);
+        stmt.setInt(13, idAviao);
+        stmt.execute();
+        stmt.close();
+
     }
 
-    public Voo(String numero, String data, String hora, String origem, String destino, String piloto, String copiloto, String observacao, int idPista, Pista pista, int idHelicoptero, Helicoptero helicoptero, int idJato, Jato jato) {
+    public Voo(String numero, String data, String hora, String origem, String destino, String piloto, String copiloto, String observacao, int idPista, char tipo, Pista pista, int idHelicoptero, Helicoptero helicoptero, int idJato, Jato jato, int idAviao, Aviao aviao) throws Exception {
         this.numero = numero;
         this.data = data;
         this.hora = hora;
@@ -55,6 +82,26 @@ public class Voo {
         this.helicoptero = helicoptero;
         this.idJato = idJato;
         this.jato = jato;
+        this.idAviao = idAviao;
+        this.aviao = aviao;
+
+        PreparedStatement stmt = DAO.createConnection().prepareStatement(
+            "INSERT INTO voo (numero, data, hora, origem, destino, piloto, copiloto, observacao, pista_id, helicoptero_id, jato_id, aviao_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+        );
+        stmt.setString(1, numero);
+        stmt.setString(2, data);
+        stmt.setString(3, hora);
+        stmt.setString(4, origem);
+        stmt.setString(5, destino);
+        stmt.setString(6, piloto);
+        stmt.setString(7, copiloto);
+        stmt.setString(8, observacao);
+        stmt.setInt(9, idPista);
+        stmt.setInt(10, idHelicoptero);
+        stmt.setInt(11, idJato);
+        stmt.setInt(13, idAviao);
+        stmt.execute();
+        stmt.close();
     }
 
     // ResultSet voo
@@ -177,6 +224,22 @@ public class Voo {
 
     public Jato getJato() {
         return jato;
+    }
+
+    public void setIdAviao(int idAviao) {
+        this.idAviao = idAviao;
+    }
+
+    public int getIdAviao() {
+        return idAviao;
+    }
+
+    public void setAviao(Aviao aviao) {
+        this.aviao = aviao;
+    }
+
+    public Aviao getAviao() {
+        return aviao;
     }
 
     @Override

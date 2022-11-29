@@ -1,8 +1,11 @@
 package models;
 
+import java.sql.PreparedStatement;
+
+import DAO.DAO;
 import generic.*;
 
-public abstract class Companhia implements Database{
+public class Companhia implements Database{
     
     private int id;
     private String nome;
@@ -12,15 +15,32 @@ public abstract class Companhia implements Database{
 
     }
 
-    public Companhia(int id, String nome, String cnpj) {
+    public Companhia(int id, String nome, String cnpj) throws Exception {
         this.id = id;
         this.nome = nome; 
         this.cnpj = cnpj;
+
+        PreparedStatement stmt = DAO.createConnection().prepareStatement(
+            "INSERT INTO companhia (id, nome, cnpj) VALUES (?, ?, ?);"
+        );
+        stmt.setInt(1, id);
+        stmt.setString(2, nome);
+        stmt.setString(3, cnpj);
+        stmt.execute();
+        stmt.close();
     }
 
-    public Companhia(String nome, String cnpj) {
+    public Companhia(String nome, String cnpj) throws Exception {
         this.nome = nome; 
         this.cnpj = cnpj;
+
+        PreparedStatement stmt = DAO.createConnection().prepareStatement(
+            "INSERT INTO companhia (nome, cnpj) VALUES (?, ?);"
+        );
+        stmt.setString(1, nome);
+        stmt.setString(2, cnpj);
+        stmt.execute();
+        stmt.close();
     } 
 
     public void setId(int id) {
