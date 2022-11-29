@@ -1,6 +1,8 @@
 package models;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import DAO.*;
 import generic.*;
@@ -90,7 +92,34 @@ public class Aviao extends Aeromodelo{
 
     @Override
     public String toString() {
-        return super.toString() + this.prefixo + this.capacidade + this.idCompanhia + this.companhia;
+        return "Aviao [capacidade=" + capacidade + ", companhia=" + companhia + ", idCompanhia=" + idCompanhia
+                + ", prefixo=" + prefixo + "]";
+    }
+
+    public static void select() throws Exception {
+        Connection select = DAO.createConnection();
+        ResultSet rs = select.createStatement().executeQuery(
+            "SELECT * FROM aviao;"
+        );
+        while (rs.next()) {
+            System.out.println(
+                "=======================================" + "\n" +
+                "Id: " + 
+                rs.getInt("id") + "\n" +
+                "Marca: " +  
+                rs.getString("marca") + "\n" + 
+                "Modelo: " +
+                rs.getString("modelo") + "\n" +
+                "Prefixo: " +
+                rs.getString("prefixo") + "\n" +
+                "Capacidade: " +
+                rs.getInt("capacidade") + "\n" +
+                "Id da companhia: " +
+                rs.getInt("companhia_id") + "\n" +
+                "======================================="
+            );
+        }
+        select.close();
     }
 
     public void update() {

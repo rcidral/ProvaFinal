@@ -1,6 +1,8 @@
 package models;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import DAO.DAO;
 import generic.*;
@@ -88,6 +90,26 @@ public class Companhia implements Database{
 
     public static Companhia getById(int id) {
         return new Companhia();
+    }
+
+    public static void select() throws Exception {
+        Connection select = DAO.createConnection();
+        ResultSet rs = select.createStatement().executeQuery(
+            "SELECT * FROM companhia;"
+        );
+        while (rs.next()) {
+            System.out.println(
+                "=======================================" + "\n" +
+                "Id: " + 
+                rs.getInt("id") + "\n" +
+                "Nome: " +
+                rs.getString("nome") + "\n" +
+                "CNPJ: " +
+                rs.getString("cnpj") + "\n" +
+                "======================================="
+            );
+        }
+        select.close();
     }
 
     public void update() {

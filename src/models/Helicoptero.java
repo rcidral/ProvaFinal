@@ -1,7 +1,11 @@
 package models;
 
 import generic.Aeromodelo;
+
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 import DAO.DAO;
 
 public class Helicoptero extends Aeromodelo{
@@ -79,6 +83,30 @@ public class Helicoptero extends Aeromodelo{
         }
         Helicoptero heli = (Helicoptero) obj;
         return heli.getId() == getId();
+    }
+
+    public static void select() throws Exception {
+        Connection select = DAO.createConnection();
+        ResultSet rs = select.createStatement().executeQuery(
+            "SELECT * FROM helicoptero;"
+        );
+        while (rs.next()) {
+            System.out.println(
+                "=======================================" + "\n" +
+                "Id: " + 
+                rs.getInt("id") + "\n" +
+                "Marca: " +
+                rs.getString("marca") + "\n" +
+                "Modelo: " +
+                rs.getString("modelo") + "\n" +
+                "Cor: " +
+                rs.getString("cor") + "\n" +
+                "Capacidade: " +
+                rs.getInt("capacidade") + "\n" +
+                "======================================="
+            );
+        }
+        select.close();
     }
 
     public void update() {

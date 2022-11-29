@@ -1,6 +1,9 @@
 package models;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 import DAO.DAO;
 
 public class Voo {
@@ -244,7 +247,47 @@ public class Voo {
 
     @Override
     public String toString() {
-        return "Voo{" + "id=" + id + ", numero=" + numero + ", data=" + data + ", hora=" + hora + ", origem=" + origem + ", destino=" + destino + ", piloto=" + piloto + ", copiloto=" + copiloto + ", observacao=" + observacao + ", idPista=" + idPista + ", pista=" + pista + ", idHelicoptero=" + idHelicoptero + ", helicoptero=" + helicoptero + ", idJato=" + idJato + ", jato=" + jato + '}';
+        return "Voo{" + "id=" + id + ", numero=" + numero + ", data=" + data + ", hora=" + hora + ", origem=" + origem + ", destino=" + destino + ", piloto=" + piloto + ", copiloto=" + copiloto + ", observacao=" + observacao + ", idPista=" + idPista + ", pista=" + pista + ", idHelicoptero=" + idHelicoptero + ", helicoptero=" + helicoptero + ", idJato=" + idJato + ", jato=" + jato + ", idAviao=" + idAviao + ", aviao=" + aviao + '}';
+    }
+
+    public static void select() throws Exception {
+        Connection select = DAO.createConnection();
+        ResultSet rs = select.createStatement().executeQuery(
+            "SELECT * FROM voo;"
+        );
+        while (rs.next()) {
+            System.out.println(
+                "=======================================" + "\n" +
+                "Id: " + 
+                rs.getInt("id") + "\n" +
+                "Numero: " +
+                rs.getString("numero") + "\n" +
+                "Data: " +
+                rs.getString("data") + "\n" +
+                "Hora: " +
+                rs.getString("hora") + "\n" +
+                "Origem: " +
+                rs.getString("origem") + "\n" +
+                "Destino: " +
+                rs.getString("destino") + "\n" +
+                "Piloto: " +
+                rs.getString("piloto") + "\n" +
+                "Copiloto: " +
+                rs.getString("copiloto") + "\n" +
+                "Observacao: " +
+                rs.getString("observacao") + "\n" +
+                "Id da pista: " +
+                rs.getInt("pista_id") + "\n" +
+                "Id do helicoptero: " +
+                rs.getInt("helicoptero_id") + "\n" +
+                "Id do jato: " +
+                rs.getInt("jato_id") + "\n" +
+                "Id do aviao: " +
+                rs.getInt("aviao_id") + "\n" +
+                "======================================="
+            );
+        }
+        select.close();
     }
 
     public void update() {

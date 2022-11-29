@@ -1,7 +1,11 @@
 package models;
 
 import generic.Aeromodelo;
+
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 import DAO.DAO;
 
 public class Jato extends Aeromodelo{
@@ -79,6 +83,30 @@ public class Jato extends Aeromodelo{
         }
         Jato jato = (Jato) obj;
         return jato.getId() == getId();
+    }
+
+    public static void select() throws Exception {
+        Connection select = DAO.createConnection();
+        ResultSet rs = select.createStatement().executeQuery(
+            "SELECT * FROM jato;"
+        );
+        while (rs.next()) {
+            System.out.println(
+                "=======================================" + "\n" +
+                "Id: " + 
+                rs.getInt("id") + "\n" +
+                "Marca: " +
+                rs.getString("marca") + "\n" +
+                "Modelo: " +
+                rs.getString("modelo") + "\n" +
+                "Cor: " +
+                rs.getString("cor") + "\n" +
+                "Velocidade: " +
+                rs.getInt("velocidade") + "\n" +
+                "======================================="
+            );
+        }
+        select.close();
     }
 
     public void update() {

@@ -1,6 +1,8 @@
 package models;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import DAO.DAO;
 
@@ -94,6 +96,26 @@ public class Hangar {
         }
         Hangar h = (Hangar) obj;
         return h.getId() == this.getId();
+    }
+
+    public static void select() throws Exception {
+        Connection select = DAO.createConnection();
+        ResultSet rs = select.createStatement().executeQuery(
+            "SELECT * FROM hangar;"
+        );
+        while (rs.next()) {
+            System.out.println(
+                "=======================================" + "\n" +
+                "Id: " + 
+                rs.getInt("id") + "\n" +
+                "Local: " +
+                rs.getString("local") + "\n" +
+                "Aviao: " +
+                rs.getInt("aviao_id") + "\n" +
+                "======================================="
+            );
+        }
+        select.close();
     }
 
     public void update() {

@@ -1,7 +1,11 @@
 package models;
 
 import generic.*;
+
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 import DAO.DAO;
 
 public class Pista implements Database{
@@ -70,6 +74,22 @@ public class Pista implements Database{
         }
         Pista p = (Pista) obj;
         return p.getId() == this.getId();
+    }
+
+    public static void select() throws Exception {
+        Connection select = DAO.createConnection();
+        ResultSet rs = select.createStatement().executeQuery(
+            "SELECT * FROM pista;"
+        );    
+        while (rs.next()) {
+            System.out.println(
+                "=======================================" + "\n" +
+                "Id: " + 
+                rs.getInt("id") + "\n" +
+                "Numero: " +  
+                rs.getString("numero") + "\n" + 
+                "=======================================");
+        }
     }
 
     public void update() {

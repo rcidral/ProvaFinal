@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `aeroporto`.`aviao` (
   `capacidade` INT NULL,
   `companhia_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_aviao_companhia1_idx` (`companhia_id` ASC) VISIBLE,
+  INDEX `fk_aviao_companhia1_idx` (`companhia_id` ASC) ,
   CONSTRAINT `fk_aviao_companhia1`
     FOREIGN KEY (`companhia_id`)
     REFERENCES `aeroporto`.`companhia` (`id`)
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `aeroporto`.`hangar` (
   `local` VARCHAR(255) NOT NULL,
   `aviao_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_hangar_aviao_idx` (`aviao_id` ASC) VISIBLE,
+  INDEX `fk_hangar_aviao_idx` (`aviao_id` ASC) ,
   CONSTRAINT `fk_hangar_aviao`
     FOREIGN KEY (`aviao_id`)
     REFERENCES `aeroporto`.`aviao` (`id`)
@@ -119,10 +119,10 @@ CREATE TABLE IF NOT EXISTS `aeroporto`.`voo` (
   `helicoptero_id` INT UNSIGNED NOT NULL,
   `aviao_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_voo_jato1_idx` (`jato_id` ASC) VISIBLE,
-  INDEX `fk_voo_pista1_idx` (`pista_id` ASC) VISIBLE,
-  INDEX `fk_voo_helicoptero1_idx` (`helicoptero_id` ASC) VISIBLE,
-  INDEX `fk_voo_aviao1_idx` (`aviao_id` ASC) VISIBLE,
+  INDEX `fk_voo_jato1_idx` (`jato_id` ASC) ,
+  INDEX `fk_voo_pista1_idx` (`pista_id` ASC) ,
+  INDEX `fk_voo_helicoptero1_idx` (`helicoptero_id` ASC) ,
+  INDEX `fk_voo_aviao1_idx` (`aviao_id` ASC) ,
   CONSTRAINT `fk_voo_jato1`
     FOREIGN KEY (`jato_id`)
     REFERENCES `aeroporto`.`jato` (`id`)
