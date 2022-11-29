@@ -92,10 +92,10 @@ public class Pista implements Database{
         }
     }
 
-    public void update() {
+    public void update(int id) {
 
     }
-    public void delete() {
+    public void delete(int id) {
 
     }
 

@@ -122,11 +122,11 @@ public class Aviao extends Aeromodelo{
         select.close();
     }
 
-    public void update() {
+    public void update(int id) {
 
     }
 
-    public void delete() {
+    public void delete(int id) throws Exception{
 
     }
 

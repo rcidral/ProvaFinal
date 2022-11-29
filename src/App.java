@@ -2,13 +2,13 @@ import java.util.Scanner;
 import models.*;
 
 public class App {
+    
     public static void main(String[] args) throws Exception {
         int op;
-        Scanner scanner = new Scanner(System.in);
         do {
             System.out.println("1 - Cadastrar. ");
             System.out.println("2 - Visualizar. ");
-            System.out.println("3 - Atualizar. ");
+            System.out.println("3 - Editar. ");
             System.out.println("4 - Excluir. ");
             System.out.println("0 - Sair. ");
             try {
@@ -45,20 +45,7 @@ public class App {
                                     switch(op) {
                                         case 1: {
                                             try {
-                                                System.out.println("Digite o id: ");
-                                                int id = scanner.nextInt();
-                                                System.out.println("Digite a marca: ");
-                                                String marca = scanner.next();
-                                                System.out.println("Digite o modelo: ");
-                                                String modelo = scanner.next();
-                                                System.out.println("Digite o prefixo: ");
-                                                String prefixo = scanner.next();
-                                                System.out.println("Digite a capacidade: ");
-                                                int capacidade = scanner.nextInt();
-                                                System.out.println("Digite o id da companhia: ");
-                                                int idCompanhia = scanner.nextInt();
-        
-                                                new Aviao(id, marca, modelo, prefixo, capacidade, Companhia.getById(idCompanhia), idCompanhia);
+                                               cadastrarAvião();
                                             } catch (Exception e) {
                                                System.out.println("Erro ao cadastrar aeromodelo" + e.getMessage());
                                             }
@@ -66,18 +53,7 @@ public class App {
                                         }
                                         case 2: {
                                             try {
-                                                System.out.println("Digite o id: ");
-                                                int id = scanner.nextInt();
-                                                System.out.println("Digite a marca: ");
-                                                String marca = scanner.next();
-                                                System.out.println("Digite o modelo: ");
-                                                String modelo = scanner.next();
-                                                System.out.println("Digite a cor: ");
-                                                String cor = scanner.next();
-                                                System.out.println("Digite a velocidade: ");
-                                                int velocidade = scanner.nextInt();
-        
-                                                new Jato(id, marca, modelo, cor, velocidade);
+                                                cadastrarJato();
                                             } catch (Exception e) {
                                                 System.out.println("Erro ao cadastrar aeromodelo" + e.getMessage());
                                             }
@@ -85,18 +61,7 @@ public class App {
                                         }
                                         case 3: {
                                             try {
-                                                System.out.println("Digite o id: ");
-                                                int id = scanner.nextInt();
-                                                System.out.println("Digite a marca: ");
-                                                String marca = scanner.next();
-                                                System.out.println("Digite o modelo: ");
-                                                String modelo = scanner.next();
-                                                System.out.println("Digite a cor: ");
-                                                String cor = scanner.next();
-                                                System.out.println("Digite a capacidade: ");
-                                                int capacidade = scanner.nextInt();
-        
-                                                new Helicoptero(id, marca, modelo, cor, capacidade);
+                                                cadastrarHelicoptero();
                                             } catch (Exception e) {
                                                 System.out.println("Erro ao cadastrar aeromodelo" + e.getMessage());
                                             }
@@ -112,14 +77,7 @@ public class App {
                                 }
                                 case 2: {
                                     try {
-                                        System.out.println("Digite o id: ");
-                                        int id = scanner.nextInt();
-                                        System.out.println("Digite o local: ");
-                                        String local = scanner.next();
-                                        System.out.println("Digite o id do avião: ");
-                                        int idAviao = scanner.nextInt();
-        
-                                        new Hangar(id, local, idAviao, Aviao.getById(idAviao));
+                                        cadastrarHangar();
                                     } catch (Exception e) {
                                         System.out.println("Erro ao cadastrar hangar" + e.getMessage());
                                     }
@@ -127,12 +85,7 @@ public class App {
                                 }
                                 case 3: {
                                     try {
-                                        System.out.println("Digite o id: ");
-                                        int id = scanner.nextInt();
-                                        System.out.println("Digite o número: ");
-                                        String numero = scanner.next();
-        
-                                        new Pista(id, numero);
+                                        cadastrarPista();
                                     } catch (Exception e) {
                                         System.out.println("Erro ao cadastrar pista" + e.getMessage());
                                     }
@@ -140,34 +93,7 @@ public class App {
                                 }
                                 case 4: {
                                     try {
-                                        System.out.println("Digite o id: ");
-                                        int id = scanner.nextInt();
-                                        System.out.println("Digite o número: ");
-                                        String numero = scanner.next();
-                                        System.out.println("Digite a data: ");
-                                        String data = scanner.next();
-                                        System.out.println("Digite a hora: ");
-                                        String hora = scanner.next();
-                                        System.out.println("Digite a origem: ");
-                                        String origem = scanner.next();
-                                        System.out.println("Digite o destino: ");
-                                        String destino = scanner.next();
-                                        System.out.println("Digite o nome do piloto: ");
-                                        String piloto = scanner.next();
-                                        System.out.println("Digite o nome do copiloto: ");
-                                        String copiloto = scanner.next();
-                                        System.out.println("Digite a observação: ");
-                                        String observacao = scanner.next();
-                                        System.out.println("Digite o id da pista: ");
-                                        int idPista = scanner.nextInt();
-                                        System.out.println("Digite o id do helicóptero: ");
-                                        int idHelicoptero = scanner.nextInt();
-                                        System.out.println("Digite o id do jato: ");
-                                        int idJato = scanner.nextInt();
-                                        System.out.println("Digite o id od avião: ");
-                                        int idAviao = scanner.nextInt();
-        
-                                        new Voo(id, numero, data, hora, origem, destino, piloto, copiloto, observacao, idPista, Pista.getById(idPista), idHelicoptero, Helicoptero.getById(idHelicoptero), idJato, Jato.getById(idJato), idAviao, Aviao.getById(idAviao));
+                                        cadastrarVoo();
                                     } catch (Exception e) {
                                         System.out.println("Erro ao cadastrar voo" + e.getMessage());
                                     }
@@ -175,14 +101,7 @@ public class App {
                                 }
                                 case 5: {
                                     try {
-                                        System.out.println("Digite o id: ");
-                                        int id = scanner.nextInt();
-                                        System.out.println("Digite o nome: ");
-                                        String nome = scanner.next();
-                                        System.out.println("Digite o CNPJ: ");
-                                        String cnpj = scanner.next();
-        
-                                        new Companhia(id, nome, cnpj);
+                                        cadastrarCompanhia();
                                     } catch (Exception e) {
                                         System.out.println("Erro ao cadastrar companhia" + e.getMessage());
                                     }
@@ -215,7 +134,7 @@ public class App {
                         switch (op) {
                             case 1: {
                                 try {
-                                  Aviao.select();
+                                    Aviao.select();
                                 } catch (Exception e) {
                                     System.out.println("Erro ao listar avião" + e.getMessage());
                                 }
@@ -277,8 +196,134 @@ public class App {
                     } while (op != 0);
                     break;
                 }
+                case 3: {
+                    do {
+                        System.out.println("1 - Editar Avião");
+                        System.out.println("2 - Editar Helicóptero");
+                        System.out.println("3 - Editar Jato");
+                        System.out.println("4 - Editar Hangar");
+                        System.out.println("5 - Editar Pista");
+                        System.out.println("6 - Editar Voo");
+                        System.out.println("7 - Editar Companhia");
+                        System.out.println("0 - Voltar");
+                        try {
+                            op = scanner.nextInt();    
+                        } catch (Exception e) {
+                            op = 9;
+                        }
+                    } while (op != 0);
+                }
             }
         } while (op != 0);
         scanner.close();
     }
+
+    public static void cadastrarAvião() throws Exception {
+        System.out.println("Digite o id: ");
+        int id = scanner.nextInt();
+        System.out.println("Digite a marca: ");
+        String marca = scanner.next();
+        System.out.println("Digite o modelo: ");
+        String modelo = scanner.next();
+        System.out.println("Digite o prefixo: ");
+        String prefixo = scanner.next();
+        System.out.println("Digite a capacidade: ");
+        int capacidade = scanner.nextInt();
+        System.out.println("Digite o id da companhia: ");
+        int idCompanhia = scanner.nextInt();
+
+        new Aviao(id, marca, modelo, prefixo, capacidade, Companhia.getById(idCompanhia), idCompanhia);
+    }
+
+    public static void cadastrarJato() throws Exception{
+        System.out.println("Digite o id: ");
+        int id = scanner.nextInt();
+        System.out.println("Digite a marca: ");
+        String marca = scanner.next();
+        System.out.println("Digite o modelo: ");
+        String modelo = scanner.next();
+        System.out.println("Digite a cor: ");
+        String cor = scanner.next();
+        System.out.println("Digite a velocidade: ");
+        int velocidade = scanner.nextInt();
+        new Jato(id, marca, modelo, cor, velocidade);
+    }
+
+    public static void cadastrarHelicoptero() throws Exception{
+        System.out.println("Digite o id: ");
+        int id = scanner.nextInt();
+        System.out.println("Digite a marca: ");
+        String marca = scanner.next();
+        System.out.println("Digite o modelo: ");
+        String modelo = scanner.next();
+        System.out.println("Digite a cor: ");
+        String cor = scanner.next();
+        System.out.println("Digite a capacidade: ");
+        int capacidade = scanner.nextInt();
+        new Helicoptero(id, marca, modelo, cor, capacidade);
+    }
+
+    public static void cadastrarHangar() throws Exception{
+        System.out.println("Digite o id: ");
+        int id = scanner.nextInt();
+        System.out.println("Digite o local: ");
+        String local = scanner.next();
+        System.out.println("Digite o id do avião: ");
+        int idAviao = scanner.nextInt();
+        
+        new Hangar(id, local, idAviao, Aviao.getById(idAviao));
+    }
+
+    public static void cadastrarPista() throws Exception{
+        System.out.println("Digite o id: ");
+        int id = scanner.nextInt();
+        System.out.println("Digite o número: ");
+        String numero = scanner.next();
+        
+        new Pista(id, numero);
+    }
+
+    public static void cadastrarVoo() throws Exception{
+        System.out.println("Digite o id: ");
+        int id = scanner.nextInt();
+        System.out.println("Digite o número: ");
+        String numero = scanner.next();
+        System.out.println("Digite a data: ");
+        String data = scanner.next();
+        System.out.println("Digite a hora: ");
+        String hora = scanner.next();
+        System.out.println("Digite a origem: ");
+        String origem = scanner.next();
+        System.out.println("Digite o destino: ");
+        String destino = scanner.next();
+        System.out.println("Digite o nome do piloto: ");
+        String piloto = scanner.next();
+        System.out.println("Digite o nome do copiloto: ");
+        String copiloto = scanner.next();
+        System.out.println("Digite a observação: ");
+        String observacao = scanner.next();
+        System.out.println("Digite o id da pista: ");
+        int idPista = scanner.nextInt();
+        System.out.println("Digite o id do helicóptero: ");
+        int idHelicoptero = scanner.nextInt();
+        System.out.println("Digite o id do jato: ");
+        int idJato = scanner.nextInt();
+        System.out.println("Digite o id od avião: ");
+        int idAviao = scanner.nextInt();
+
+        new Voo(id, numero, data, hora, origem, destino, piloto, copiloto, observacao, idPista, Pista.getById(idPista), idHelicoptero, Helicoptero.getById(idHelicoptero), idJato, Jato.getById(idJato), idAviao, Aviao.getById(idAviao));
+    }
+
+    public static void cadastrarCompanhia() throws Exception{
+        System.out.println("Digite o id: ");
+        int id = scanner.nextInt();
+        System.out.println("Digite o nome: ");
+        String nome = scanner.next();
+        System.out.println("Digite o CNPJ: ");
+        String cnpj = scanner.next();
+        
+        new Companhia(id, nome, cnpj);
+    }
+
+    public static Scanner scanner = new Scanner(System.in);
 }

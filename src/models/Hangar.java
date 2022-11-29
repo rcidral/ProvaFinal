@@ -118,6 +118,10 @@ public class Hangar {
         select.close();
     }
 
+    public static Hangar getById(int id) {
+        return new Hangar();
+    }
+
     public void update() {
 
     }
