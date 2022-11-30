@@ -23,14 +23,21 @@ public class Hangar {
         this.idAviao = idAviao;
         this.aviao = Aviao.getById(idAviao);
 
-        PreparedStatement stmt = DAO.createConnection().prepareStatement(
-            "INSERT INTO hangar (id, local, aviao_id) VALUES (?, ?, ?);"
+        ResultSet rs = DAO.createConnection().createStatement().executeQuery(
+            "SELECT id FROM hangar;"
         );
-        stmt.setInt(1, id);
-        stmt.setString(2, local);
-        stmt.setInt(3, idAviao);
-        stmt.execute();
-        stmt.close();
+        if(rs.last() == true) {
+            throw new Exception("Somente um avião por hangar! ");
+        } else {
+            PreparedStatement stmt = DAO.createConnection().prepareStatement(
+            "INSERT INTO hangar (id, local, aviao_id) VALUES (?, ?, ?);"
+            );
+            stmt.setInt(1, id);
+            stmt.setString(2, local);
+            stmt.setInt(3, idAviao);
+            stmt.execute();
+            stmt.close();
+        }
     }
 
     public Hangar(String local, int idAviao, Aviao aviao) throws Exception {

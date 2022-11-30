@@ -7,11 +7,15 @@ public class App {
     public static void main(String[] args) throws Exception {
         int op;
         do {
-            System.out.println("1 - Cadastrar. ");
-            System.out.println("2 - Visualizar. ");
-            System.out.println("3 - Editar. ");
-            System.out.println("4 - Excluir. ");
-            System.out.println("0 - Sair. ");
+            System.out.println(
+                "=======================================" + "\n" +
+                "1 - Cadastrar. " + "\n" +
+                "2 - Visualizar. " + "\n" +
+                "3 - Editar. " + "\n" +
+                "4 - Excluir. " + "\n" +
+                "0 - Sair" + "\n" +
+                "======================================="
+            );
             try {
                 op = scanner.nextInt();
             } catch (Exception e) {
@@ -20,12 +24,17 @@ public class App {
             switch(op) {
                 case 1: {
                     do {
-                        System.out.println("1 - Cadastrar Aeromodelo. ");
-                        System.out.println("2 - Cadastrar Hangar. ");
-                        System.out.println("3 - Cadastrar Pista. ");
-                        System.out.println("4 - Cadastrar Voo. ");
-                        System.out.println("5 - Cadastrar Companhia. ");
-                        System.out.println("0 - Sair. ");
+                        System.out.println(
+                            "=======================================" + "\n" +
+                            "1 - Cadastrar Aeromodelo. "+ "\n" +
+                            "2 - Cadastrar Hangar. "+ "\n" +
+                            "3 - Cadastrar Pista. "+ "\n" +
+                            "4 - Cadastrar Voo. "+ "\n" +
+                            "5 - Cadastrar Companhia. "+ "\n" +
+                            "0 - Voltar. "+ "\n" +
+                            "======================================="
+                        );
+                        
                         try {
                             op = scanner.nextInt();
                         } catch (Exception e) {
@@ -34,10 +43,14 @@ public class App {
                         switch(op) {
                             case 1: {
                                 do {
-                                    System.out.println("1 - Cadastrar Avião. ");
-                                    System.out.println("2 - Cadastrar Jato. ");
-                                    System.out.println("3 - Cadastrar Helicóptero. ");
-                                    System.out.println("0 - Sair. ");
+                                    System.out.println(
+                                        "=======================================" + "\n" +
+                                        "1 - Cadastrar Avião. "+ "\n" +
+                                        "2 - Cadastrar Jato. "+ "\n" +
+                                        "3 - Cadastrar Helicóptero. "+ "\n" +
+                                        "0 - Voltar. "+ "\n" +
+                                        "======================================="
+                                    );
                                     try {
                                         op = scanner.nextInt();
                                     } catch (Exception e) {
@@ -48,7 +61,7 @@ public class App {
                                             try {
                                                cadastrarAvião();
                                             } catch (Exception e) {
-                                               System.out.println("Erro ao cadastrar aeromodelo" + e.getMessage());
+                                               System.out.println("Erro ao cadastrar aeromodelo" + "\n" + "\n" + e.getMessage());
                                             }
                                             break;
                                         }
@@ -56,7 +69,7 @@ public class App {
                                             try {
                                                 cadastrarJato();
                                             } catch (Exception e) {
-                                                System.out.println("Erro ao cadastrar aeromodelo" + e.getMessage());
+                                                System.out.println("Erro ao cadastrar aeromodelo" + "\n" + "\n" + e.getMessage());
                                             }
                                             break;
                                         }
@@ -64,7 +77,7 @@ public class App {
                                             try {
                                                 cadastrarHelicoptero();
                                             } catch (Exception e) {
-                                                System.out.println("Erro ao cadastrar aeromodelo" + e.getMessage());
+                                                System.out.println("Erro ao cadastrar aeromodelo" + "\n" + "\n" + e.getMessage());
                                             }
                                             break;
                                         }
@@ -77,15 +90,15 @@ public class App {
                                                 break;
                                             }
                                         }
-                                        op = 99;
                                     } while (op != 0);
+                                    op = 99;
                                     break;
                                 }
                                 case 2: {
                                     try {
                                         cadastrarHangar();
                                     } catch (Exception e) {
-                                        System.out.println("Erro ao cadastrar hangar" + e.getMessage());
+                                        System.out.println("Erro ao cadastrar hangar" + "\n" + "\n" + e.getMessage());
                                     }
                                     break;
                                 }
@@ -93,7 +106,7 @@ public class App {
                                     try {
                                         cadastrarPista();
                                     } catch (Exception e) {
-                                        System.out.println("Erro ao cadastrar pista" + e.getMessage());
+                                        System.out.println("Erro ao cadastrar pista" + "\n" + e.getMessage());
                                     }
                                     break;
                                 }
@@ -101,7 +114,7 @@ public class App {
                                     try {
                                         cadastrarVoo();
                                     } catch (Exception e) {
-                                        System.out.println("Erro ao cadastrar voo" + e.getMessage());
+                                        System.out.println("Erro ao cadastrar voo" + "\n" + e.getMessage());
                                     }
                                     break;
                                 }
@@ -109,7 +122,7 @@ public class App {
                                     try {
                                         cadastrarCompanhia();
                                     } catch (Exception e) {
-                                        System.out.println("Erro ao cadastrar companhia" + e.getMessage());
+                                        System.out.println("Erro ao cadastrar companhia" + "\n" + e.getMessage());
                                     }
                                     break;
                                 }
@@ -122,20 +135,24 @@ public class App {
                                     break;
                                 }
                             }
-                            op = 99;
                         } while (op != 0);
+                        op = 99;
                     break;
                 }
                 case 2: {
                     do {
-                        System.out.println("1 - Listar Avião");
-                        System.out.println("2 - Listar Helicóptero");
-                        System.out.println("3 - Listar Jato");
-                        System.out.println("4 - Listar Hangar");
-                        System.out.println("5 - Listar Pista");
-                        System.out.println("6 - Listar Voo");
-                        System.out.println("7 - Listar Companhia");
-                        System.out.println("0 - Voltar");
+                        System.out.println(
+                            "=======================================" + "\n" +
+                            "1 - Visualizar Avião. "+ "\n" +
+                            "2 - Visualizar Helicóptero. "+ "\n" +
+                            "3 - Visualizar Jato. "+ "\n" +
+                            "4 - Visualizar Hangar. "+ "\n" +
+                            "5 - Visualizar Pista. "+ "\n" +
+                            "6 - Visualizar Voo. "+ "\n" +
+                            "7 - Visualizar Companhia. "+ "\n" +
+                            "0 - Voltar. "+ "\n" +
+                            "======================================="
+                        );
                         try {
                             op = scanner.nextInt();    
                         } catch (Exception e) {
@@ -147,7 +164,7 @@ public class App {
                                 try {
                                     Aviao.select();
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao listar avião" + e.getMessage());
+                                    System.out.println("Erro ao listar avião" + "\n" + e.getMessage());
                                 }
                                 break;
                             }
@@ -155,7 +172,7 @@ public class App {
                                 try {
                                     Helicoptero.select();
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao listar helicóptero" + e.getMessage());
+                                    System.out.println("Erro ao listar helicóptero" + "\n" + e.getMessage());
                                 }
                                 break;
                             }
@@ -163,7 +180,7 @@ public class App {
                                 try {
                                     Jato.select();
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao listar jato" + e.getMessage());
+                                    System.out.println("Erro ao listar jato" + "\n" + e.getMessage());
                                 }
                                 break;
                             }
@@ -171,7 +188,7 @@ public class App {
                                 try {
                                     Hangar.select();
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao listar hangar" + e.getMessage());
+                                    System.out.println("Erro ao listar hangar" + "\n" + e.getMessage());
                                 }
                                 break;
                             }
@@ -179,7 +196,7 @@ public class App {
                                 try {
                                     Pista.select();
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao listar pista" + e.getMessage());
+                                    System.out.println("Erro ao listar pista" + "\n" + e.getMessage());
                                 }
                                 break;
                             }
@@ -187,7 +204,7 @@ public class App {
                                 try {
                                     Voo.select();
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao listar voo" + e.getMessage());
+                                    System.out.println("Erro ao listar voo" + "\n" + e.getMessage());
                                 }
                                 break;
                             }
@@ -195,7 +212,7 @@ public class App {
                                 try {
                                     Companhia.select();
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao listar companhia" + e.getMessage());
+                                    System.out.println("Erro ao listar companhia" + "\n" + e.getMessage());
                                 }
                                 break;
                             }
@@ -214,14 +231,18 @@ public class App {
                 }
                 case 3: {
                     do {
-                        System.out.println("1 - Editar Avião");
-                        System.out.println("2 - Editar Helicóptero");
-                        System.out.println("3 - Editar Jato");
-                        System.out.println("4 - Editar Hangar");
-                        System.out.println("5 - Editar Pista");
-                        System.out.println("6 - Editar Voo");
-                        System.out.println("7 - Editar Companhia");
-                        System.out.println("0 - Voltar");
+                        System.out.println(
+                            "=======================================" + "\n" +
+                            "1 - Editar Avião. "+ "\n" +
+                            "2 - Editar Helicóptero. "+ "\n" +
+                            "3 - Editar Jato. "+ "\n" +
+                            "4 - Editar Hangar. "+ "\n" +
+                            "5 - Editar Pista. "+ "\n" +
+                            "6 - Editar Voo. "+ "\n" +
+                            "7 - Editar Companhia. "+ "\n" +
+                            "0 - Voltar. "+ "\n" +
+                            "======================================="
+                        );
                         try {
                             op = scanner.nextInt();    
                         } catch (Exception e) {
@@ -232,7 +253,7 @@ public class App {
                                 try {
                                     editarAviao();
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao editar avião" + e.getMessage());
+                                    System.out.println("Erro ao editar avião" + "\n" + e.getMessage());
                                 }
                                 break;
                             }
@@ -240,7 +261,7 @@ public class App {
                                 try {
                                     editarHelicoptero();
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao editar helicóptero" + e.getMessage());
+                                    System.out.println("Erro ao editar helicóptero" + "\n" + e.getMessage());
                                 }
                                 break;
                             }
@@ -248,7 +269,7 @@ public class App {
                                 try {
                                     editarJato();
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao editar jato" + e.getMessage());
+                                    System.out.println("Erro ao editar jato" + "\n" + e.getMessage());
                                 }
                                 break;
                             }
@@ -256,7 +277,7 @@ public class App {
                                 try {
                                     editarHangar();
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao editar hangar" + e.getMessage());
+                                    System.out.println("Erro ao editar hangar" + "\n" + e.getMessage());
                                 }
                                 break;
                             }
@@ -264,7 +285,7 @@ public class App {
                                 try {
                                     editarPista();
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao editar pista" + e.getMessage());
+                                    System.out.println("Erro ao editar pista" + "\n" + e.getMessage());
                                 }
                                 break;
                             }
@@ -272,7 +293,7 @@ public class App {
                                 try {
                                     editarVoo();
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao editar voo" + e.getMessage());
+                                    System.out.println("Erro ao editar voo" + "\n" + e.getMessage());
                                 }
                                 break;
                             }
@@ -280,7 +301,7 @@ public class App {
                                 try {
                                     editarCompanhia();
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao editar companhia" + e.getMessage());
+                                    System.out.println("Erro ao editar companhia" + "\n" + e.getMessage());
                                 }
                                 break;
                             }
@@ -293,20 +314,24 @@ public class App {
                                 break;
                             }
                         }
-                    op = 99;
                     } while (op != 0);
+                    op = 99;
                     break;
                 }
                 case 4: {
                     do {
-                        System.out.println("1 - Excluir Avião");
-                        System.out.println("2 - Excluir Helicóptero");
-                        System.out.println("3 - Excluir Jato");
-                        System.out.println("4 - Excluir Hangar");
-                        System.out.println("5 - Excluir Pista");
-                        System.out.println("6 - Excluir Voo");
-                        System.out.println("7 - Excluir Companhia");
-                        System.out.println("0 - Voltar");
+                        System.out.println(
+                            "=======================================" + "\n" +
+                            "1 - Excluir Avião. "+ "\n" +
+                            "2 - Excluir Helicóptero. "+ "\n" +
+                            "3 - Excluir Jato. "+ "\n" +
+                            "4 - Excluir Hangar. "+ "\n" +
+                            "5 - Excluir Pista. "+ "\n" +
+                            "6 - Excluir Voo. "+ "\n" +
+                            "7 - Excluir Companhia. "+ "\n" +
+                            "0 - Voltar. "+ "\n" +
+                            "======================================="
+                        );
                         try {
                             op = scanner.nextInt();    
                         } catch (Exception e) {
@@ -319,7 +344,7 @@ public class App {
                                     int id = scanner.nextInt();
                                     Aviao.delete(id);
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao excluir avião" + e.getMessage());
+                                    System.out.println("Erro ao excluir avião" + "\n" + e.getMessage());
                                 }
                                 break;
                             }
@@ -329,7 +354,7 @@ public class App {
                                     int id = scanner.nextInt();
                                     Helicoptero.delete(id);
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao excluir helicóptero" + e.getMessage());
+                                    System.out.println("Erro ao excluir helicóptero" + "\n" + e.getMessage());
                                 }
                                 break;
                             }
@@ -339,7 +364,7 @@ public class App {
                                     int id = scanner.nextInt();
                                     Jato.delete(id);
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao excluir jato" + e.getMessage());
+                                    System.out.println("Erro ao excluir jato" + "\n" + e.getMessage());
                                 }
                                 break;
                             }
@@ -349,7 +374,7 @@ public class App {
                                     int id = scanner.nextInt();
                                     Hangar.delete(id);
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao excluir hangar" + e.getMessage());
+                                    System.out.println("Erro ao excluir hangar" + "\n" + e.getMessage());
                                 }
                                 break;
                             }
@@ -359,7 +384,7 @@ public class App {
                                     int id = scanner.nextInt();
                                     Pista.delete(id);
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao excluir pista" + e.getMessage());
+                                    System.out.println("Erro ao excluir pista" + "\n" + e.getMessage());
                                 }
                                 break;
                             }
@@ -369,7 +394,7 @@ public class App {
                                     int id = scanner.nextInt();
                                     Voo.delete(id);
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao excluir voo" + e.getMessage());
+                                    System.out.println("Erro ao excluir voo" + "\n" + e.getMessage());
                                 }
                                 break;
                             }
@@ -379,8 +404,12 @@ public class App {
                                     int id = scanner.nextInt();
                                     Companhia.delete(id);
                                 } catch (Exception e) {
-                                    System.out.println("Erro ao excluir companhia" + e.getMessage());
+                                    System.out.println("Erro ao excluir companhia" + "\n" + e.getMessage());
                                 }
+                                break;
+                            }
+                            case 0: {
+                                System.out.println("Voltando...");
                                 break;
                             }
                             default: {
@@ -389,6 +418,7 @@ public class App {
                             }
                         }
                     } while (op != 0);
+                    op = 99;
                     break;
                 }
                 case 0: {
@@ -413,8 +443,11 @@ public class App {
         String modelo = scanner.next();
         System.out.println("Digite o prefixo: ");
         String prefixo = scanner.next();
-        System.out.println("Digite a capacidade: ");
-        int capacidade = scanner.nextInt();
+        int capacidade = -1;
+        while(capacidade <= 0) {
+            System.out.println("Você digitou uma capacidade nula ou negativa, digite novamente: ");
+            capacidade = scanner.nextInt();
+        }
         System.out.println("Digite o id da companhia: ");
         int idCompanhia = scanner.nextInt();
 
@@ -430,8 +463,12 @@ public class App {
         String modelo = scanner.next();
         System.out.println("Digite a cor: ");
         String cor = scanner.next();
-        System.out.println("Digite a velocidade: ");
-        int velocidade = scanner.nextInt();
+        int velocidade = -1;
+        while(velocidade <= 0) {
+            System.out.println("Você digitou uma velocidade nula ou negativa, digite novamente: ");
+            velocidade = scanner.nextInt();
+        }
+
         new Jato(id, marca, modelo, cor, velocidade);
     }
 
@@ -444,8 +481,12 @@ public class App {
         String modelo = scanner.next();
         System.out.println("Digite a cor: ");
         String cor = scanner.next();
-        System.out.println("Digite a capacidade: ");
-        int capacidade = scanner.nextInt();
+        int capacidade = -1;
+        while(capacidade <= 0) {
+            System.out.println("Você digitou uma capacidade nula ou negativa, digite novamente: ");
+            capacidade = scanner.nextInt();
+        }
+
         new Helicoptero(id, marca, modelo, cor, capacidade);
     }
 

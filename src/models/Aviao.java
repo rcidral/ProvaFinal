@@ -26,6 +26,7 @@ public class Aviao extends Aeromodelo{
         this.companhia = Companhia.getById(idCompanhia);
         this.idCompanhia = idCompanhia;
 
+        
         PreparedStatement stmt = DAO.createConnection().prepareStatement(
             "INSERT INTO aviao (id, marca, modelo, prefixo, capacidade, companhia_id) VALUES (?, ?, ?, ?, ?, ?);"
         );
@@ -35,8 +36,24 @@ public class Aviao extends Aeromodelo{
         stmt.setString(4, prefixo);
         stmt.setInt(5, capacidade);
         stmt.setInt(6, idCompanhia);
-        stmt.execute();
-        stmt.close();
+
+        ResultSet rs = DAO.createConnection().createStatement().executeQuery(
+            "SELECT * FROM companhia WHERE id = "+ idCompanhia + ";"
+        );
+        if(rs.last() == false) {
+            throw new Exception("Companhia inexistente! ");
+        } else {
+            rs = DAO.createConnection().createStatement().executeQuery(
+            "SELECT companhia_id FROM aviao WHERE id = " + id + ";"
+            );
+            if(rs.last() == true) {
+                throw new Exception("Somente uma companhia por avião! ");
+            } else {
+                stmt.execute();
+                stmt.close();
+            }
+        }
+        
     }
 
     public Aviao(String marca, String modelo, String prefixo, int capacidade, Companhia companhia, int idCompanhia) throws Exception {
@@ -119,6 +136,7 @@ public class Aviao extends Aeromodelo{
                 "======================================="
             );
         }
+        rs.close();
         select.close();
     }
 
