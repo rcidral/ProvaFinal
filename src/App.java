@@ -441,8 +441,16 @@ public class App {
         String marca = scanner.next();
         System.out.println("Digite o modelo: ");
         String modelo = scanner.next();
-        System.out.println("Digite o prefixo: ");
-        String prefixo = scanner.next();
+        String prefixoL = "";
+        int prefixoN = 0;
+        String conc = "";
+        while(conc.length() != 7) {
+            System.out.println("Digite as três(3) letras do prefixo: ");
+            prefixoL = scanner.next();
+            System.out.println("Digite os quatro(4) números do prefixo: ");
+            prefixoN = scanner.nextInt();
+            conc = prefixoL + Integer.toString(prefixoN);
+        }
         int capacidade = -1;
         while(capacidade <= 0) {
             System.out.println("Você digitou uma capacidade nula ou negativa, digite novamente: ");
@@ -451,7 +459,7 @@ public class App {
         System.out.println("Digite o id da companhia: ");
         int idCompanhia = scanner.nextInt();
 
-        new Aviao(id, marca, modelo, prefixo, capacidade, Companhia.getById(idCompanhia), idCompanhia);
+        new Aviao(id, marca, modelo, prefixoL, prefixoN, capacidade, Companhia.getById(idCompanhia), idCompanhia);
     }
 
     public static void cadastrarJato() throws Exception{
@@ -504,17 +512,33 @@ public class App {
     public static void cadastrarPista() throws Exception{
         System.out.println("Digite o id: ");
         int id = scanner.nextInt();
-        System.out.println("Digite o número: ");
-        String numero = scanner.next();
+        char numeroL = ' ';
+        int numeroN = 0;
+        String conc = "";
+        while(conc.length() != 3) {
+            System.out.println("Digite uma(1) letra da numeração: ");
+            numeroL = scanner.next().charAt(0);
+            System.out.println("Digite os dois(dois) números da numeração: ");
+            numeroN = scanner.nextInt();
+            conc = numeroL + Integer.toString(numeroN);
+        }
         
-        new Pista(id, numero);
+        new Pista(id, numeroL, numeroN);
     }
 
     public static void cadastrarVoo() throws Exception{
         System.out.println("Digite o id: ");
         int id = scanner.nextInt();
-        System.out.println("Digite o número: ");
-        String numero = scanner.next();
+        String numeroL = "";
+        int numeroN = 0;
+        String conc = "";
+        while(conc.length() != 7) {
+            System.out.println("Digite as três(3) letras da numeração: ");
+            numeroL = scanner.next();
+            System.out.println("Digite os seis(6) números da numeração: ");
+            numeroN = scanner.nextInt();
+            conc = numeroL + Integer.toString(numeroN);
+        }
         System.out.println("Digite a data: ");
         String data = scanner.next();
         System.out.println("Digite a hora: ");
@@ -538,7 +562,7 @@ public class App {
         System.out.println("Digite o id od avião: ");
         int idAviao = scanner.nextInt();
 
-        new Voo(id, numero, data, hora, origem, destino, piloto, copiloto, observacao, idPista, Pista.getById(idPista), idHelicoptero, Helicoptero.getById(idHelicoptero), idJato, Jato.getById(idJato), idAviao, Aviao.getById(idAviao));
+        new Voo(id, numeroL, numeroN, data, hora, origem, destino, piloto, copiloto, observacao, idPista, Pista.getById(idPista), idHelicoptero, Helicoptero.getById(idHelicoptero), idJato, Jato.getById(idJato), idAviao, Aviao.getById(idAviao));
     }
 
     public static void cadastrarCompanhia() throws Exception{

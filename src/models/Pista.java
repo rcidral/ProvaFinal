@@ -5,36 +5,37 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import DAO.DAO;
+import generic.Chave;
 
 public class Pista {
     
     private int id;
-    private String numero;
+    private Chave<Character, Integer> numero;
 
     public Pista() {
 
     }
 
-    public Pista(int id, String numero) throws Exception {
+    public Pista(int id, Character numeroL, int numeroN) throws Exception {
         this.id = id;
-        this.numero = numero;
+        this.numero = new Chave<Character,Integer>(numeroL, numeroN);
 
         PreparedStatement stmt = DAO.createConnection().prepareStatement(
             "INSERT INTO pista (id, numero) VALUES (?, ?);"
         );
         stmt.setInt(1, id);
-        stmt.setString(2, numero);
+        stmt.setString(2, numero.toString());
         stmt.execute();
         stmt.close();
     }
 
-    public Pista(String numero) throws Exception {
-        this.numero = numero;
+    public Pista(Character numeroL, int numeroN) throws Exception {
+        this.numero = new Chave<Character,Integer>(numeroL, numeroN);
 
         PreparedStatement stmt = DAO.createConnection().prepareStatement(
             "INSERT INTO pista (numero) VALUES (?);"
         );
-        stmt.setString(1, numero);
+        stmt.setString(1, numero.toString());
         stmt.execute();
         stmt.close();
     }
@@ -47,11 +48,11 @@ public class Pista {
         return id;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void setNumero(Character numeroL, int numeroN) {
+        this.numero = new Chave<Character,Integer>(numeroL, numeroN);
     }
 
-    public String getNumero() {
+    public Chave<Character,Integer> getNumero() {
         return numero;
     }
 

@@ -5,11 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import DAO.DAO;
+import generic.Chave;
 
 public class Voo {
     
     private int id;
-    private String numero;
+    private Chave<String, Integer> numero;
     private String data;
     private String hora;
     private String origem;
@@ -30,9 +31,9 @@ public class Voo {
 
     }
 
-    public Voo(int id, String numero, String data, String hora, String origem, String destino, String piloto, String copiloto, String observacao, int idPista, Pista pista, int idHelicoptero, Helicoptero helicoptero, int idJato, Jato jato, int idAviao, Aviao aviao) throws Exception {
+    public Voo(int id, String numeroL, int numeroN, String data, String hora, String origem, String destino, String piloto, String copiloto, String observacao, int idPista, Pista pista, int idHelicoptero, Helicoptero helicoptero, int idJato, Jato jato, int idAviao, Aviao aviao) throws Exception {
         this.id = id;
-        this.numero = numero;
+        this.numero = new Chave<String,Integer>(numeroL, numeroN);
         this.data = data;
         this.hora = hora;
         this.origem = origem;
@@ -53,7 +54,7 @@ public class Voo {
             "INSERT INTO voo (id, numero, data, hora, origem, destino, piloto, copiloto, observacao, pista_id, helicoptero_id, jato_id, aviao_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
         );
         stmt.setInt(1, id);
-        stmt.setString(2, numero);
+        stmt.setString(2, numero.toString());
         stmt.setString(3, data);
         stmt.setString(4, hora);
         stmt.setString(5, origem);
@@ -70,8 +71,8 @@ public class Voo {
 
     }
 
-    public Voo(String numero, String data, String hora, String origem, String destino, String piloto, String copiloto, String observacao, int idPista, char tipo, Pista pista, int idHelicoptero, Helicoptero helicoptero, int idJato, Jato jato, int idAviao, Aviao aviao) throws Exception {
-        this.numero = numero;
+    public Voo(String numeroL, int numeroN, String data, String hora, String origem, String destino, String piloto, String copiloto, String observacao, int idPista, char tipo, Pista pista, int idHelicoptero, Helicoptero helicoptero, int idJato, Jato jato, int idAviao, Aviao aviao) throws Exception {
+        this.numero = new Chave<String,Integer>(numeroL, numeroN);
         this.data = data;
         this.hora = hora;
         this.origem = origem;
@@ -91,7 +92,7 @@ public class Voo {
         PreparedStatement stmt = DAO.createConnection().prepareStatement(
             "INSERT INTO voo (numero, data, hora, origem, destino, piloto, copiloto, observacao, pista_id, helicoptero_id, jato_id, aviao_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
         );
-        stmt.setString(1, numero);
+        stmt.setString(1, numero.toString());
         stmt.setString(2, data);
         stmt.setString(3, hora);
         stmt.setString(4, origem);
@@ -117,11 +118,11 @@ public class Voo {
         return id;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void setNumero(String numeroL, int numeroN) {
+        this.numero = new Chave<String,Integer>(numeroL, numeroN);
     }
 
-    public String getNumero() {
+    public Chave<String, Integer> getNumero() {
         return numero;
     }
 
