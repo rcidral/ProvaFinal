@@ -122,7 +122,17 @@ public class Hangar {
         return new Hangar();
     }
 
-    public void update() {
+    public static void update(int id, String local, int idAviao, Aviao aviao) throws Exception {
+        Connection update = DAO.createConnection();
+        PreparedStatement stmt = update.prepareStatement(
+            "UPDATE hangar SET local = ?, aviao_id = ? WHERE id = ?;"
+        );
+        stmt.setString(1, local);
+        stmt.setInt(2, idAviao);
+        stmt.setInt(3, id);
+        stmt.execute();
+        stmt.close();
+        update.close();
 
     }
 

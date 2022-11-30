@@ -3,7 +3,7 @@ package generic;
 public abstract class Aeromodelo {
     
     private int id;
-    private String marca;
+    protected String marca;
     private String modelo;
 
     public Aeromodelo() {

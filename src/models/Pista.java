@@ -90,9 +90,18 @@ public class Pista {
         }
     }
 
-    public void update(int id) {
-
+    public static void update(int id, String numero) throws Exception {
+        Connection update = DAO.createConnection();
+        PreparedStatement stmt = update.prepareStatement(
+            "UPDATE pista SET numero = ? WHERE id = ?;"
+        );
+        stmt.setString(1, numero);
+        stmt.setInt(2, id);
+        stmt.execute();
+        stmt.close();
+        update.close();
     }
+    
     public static void delete(int id) throws Exception {
         Connection delete = DAO.createConnection();
         PreparedStatement stmt = delete.prepareStatement(

@@ -111,8 +111,17 @@ public class Companhia {
         select.close();
     }
 
-    public void update(int id) {
-
+    public static void update(int id, String nome, String cnpj) throws Exception {
+        Connection update = DAO.createConnection();
+        PreparedStatement stmt = update.prepareStatement(
+            "UPDATE companhia SET nome = ?, cnpj = ? WHERE id = ?;"
+        );
+        stmt.setString(1, "Nome");
+        stmt.setString(2, "CNPJ");
+        stmt.setInt(3, id);
+        stmt.execute();
+        stmt.close();
+        update.close();
     }
 
     public static void delete(int id) throws Exception {

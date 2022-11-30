@@ -109,8 +109,19 @@ public class Jato extends Aeromodelo{
         select.close();
     }
 
-    public void update(int id) {
-
+    public static void update(int id, String marca, String modelo, String cor, int velocidade) throws Exception {
+        Connection update = DAO.createConnection();
+        PreparedStatement stmt = update.prepareStatement(
+            "UPDATE jato SET marca = ?, modelo = ?, cor = ?, velocidade = ? WHERE id = ?;"
+        );
+        stmt.setString(1, marca);
+        stmt.setString(2, modelo);
+        stmt.setString(3, cor);
+        stmt.setInt(4, velocidade);
+        stmt.setInt(5, id);
+        stmt.execute();
+        stmt.close();
+        update.close();
     }
 
     public static void delete(int id) throws Exception {

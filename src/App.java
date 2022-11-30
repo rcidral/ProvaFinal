@@ -68,11 +68,16 @@ public class App {
                                             }
                                             break;
                                         }
+                                        case 0: {
+                                            System.out.println("Voltando...");
+                                            break;
+                                        }
                                         default: {
                                                 System.out.println("Opção inválida");
                                                 break;
                                             }
                                         }
+                                        op = 99;
                                     } while (op != 0);
                                     break;
                                 }
@@ -108,13 +113,18 @@ public class App {
                                     }
                                     break;
                                 }
-                            default: {
-                                System.out.println("Opção inválida.");
-                                break;
+                                case 0: {
+                                    System.out.println("Voltando...");
+                                    break;
+                                }
+                                default: {
+                                    System.out.println("Opção inválida.");
+                                    break;
+                                }
                             }
-                        }
-                    } while (op != 0);
-                break;
+                            op = 99;
+                        } while (op != 0);
+                    break;
                 }
                 case 2: {
                     do {
@@ -189,12 +199,17 @@ public class App {
                                 }
                                 break;
                             }
+                            case 0: {
+                                System.out.println("Voltando...");
+                                break;
+                            }
                             default: {
                                 System.out.println("Opção inválida.");
                                 break;
                             }
                         }
                     } while (op != 0);
+                    op = 99;
                     break;
                 }
                 case 3: {
@@ -212,6 +227,73 @@ public class App {
                         } catch (Exception e) {
                             op = 9;
                         }
+                        switch(op) {
+                            case 1: {
+                                try {
+                                    editarAviao();
+                                } catch (Exception e) {
+                                    System.out.println("Erro ao editar avião" + e.getMessage());
+                                }
+                                break;
+                            }
+                            case 2: {
+                                try {
+                                    editarHelicoptero();
+                                } catch (Exception e) {
+                                    System.out.println("Erro ao editar helicóptero" + e.getMessage());
+                                }
+                                break;
+                            }
+                            case 3: {
+                                try {
+                                    editarJato();
+                                } catch (Exception e) {
+                                    System.out.println("Erro ao editar jato" + e.getMessage());
+                                }
+                                break;
+                            }
+                            case 4: {
+                                try {
+                                    editarHangar();
+                                } catch (Exception e) {
+                                    System.out.println("Erro ao editar hangar" + e.getMessage());
+                                }
+                                break;
+                            }
+                            case 5: {
+                                try {
+                                    editarPista();
+                                } catch (Exception e) {
+                                    System.out.println("Erro ao editar pista" + e.getMessage());
+                                }
+                                break;
+                            }
+                            case 6: {
+                                try {
+                                    editarVoo();
+                                } catch (Exception e) {
+                                    System.out.println("Erro ao editar voo" + e.getMessage());
+                                }
+                                break;
+                            }
+                            case 7: {
+                                try {
+                                    editarCompanhia();
+                                } catch (Exception e) {
+                                    System.out.println("Erro ao editar companhia" + e.getMessage());
+                                }
+                                break;
+                            }
+                            case 0: {
+                                System.out.println("Voltando...");
+                                break;
+                            }
+                            default: {
+                                System.out.println("Opção inválida.");
+                                break;
+                            }
+                        }
+                    op = 99;
                     } while (op != 0);
                     break;
                 }
@@ -307,6 +389,14 @@ public class App {
                             }
                         }
                     } while (op != 0);
+                    break;
+                }
+                case 0: {
+                    System.out.println("Saindo...");
+                    break;
+                }
+                default: {
+                    System.out.println("Opção inválida.");
                     break;
                 }
             }
@@ -419,6 +509,115 @@ public class App {
         String cnpj = scanner.next();
         
         new Companhia(id, nome, cnpj);
+    }
+
+    public static void editarAviao() throws Exception{
+        System.out.println("Digite o id: ");
+        int id = scanner.nextInt();
+        System.out.println("Digite a marca: ");
+        String marca = scanner.next();
+        System.out.println("Digite o modelo: ");
+        String modelo = scanner.next();
+        System.out.println("Digite o prefixo: ");
+        String prefixo = scanner.next();
+        System.out.println("Digite a capacidade: ");
+        int capacidade = scanner.nextInt();
+        System.out.println("Digite o id da companhia: ");
+        int idCompanhia = scanner.nextInt();
+
+        Aviao.update(id, marca, modelo, prefixo, capacidade, Companhia.getById(idCompanhia), idCompanhia);
+    }
+
+    public static void editarJato() throws Exception{
+        System.out.println("Digite o id: ");
+        int id = scanner.nextInt();
+        System.out.println("Digite a marca: ");
+        String marca = scanner.next();
+        System.out.println("Digite o modelo: ");
+        String modelo = scanner.next();
+        System.out.println("Digite a cor: ");
+        String cor = scanner.next();
+        System.out.println("Digite a velocidade: ");
+        int velocidade = scanner.nextInt();
+
+        Jato.update(id, marca, modelo, cor, velocidade);
+    }
+
+    public static void editarHelicoptero() throws Exception{
+        System.out.println("Digite o id: ");
+        int id = scanner.nextInt();
+        System.out.println("Digite a marca: ");
+        String marca = scanner.next();
+        System.out.println("Digite o modelo: ");
+        String modelo = scanner.next();
+        System.out.println("Digite a cor: ");
+        String cor = scanner.next();
+        System.out.println("Digite a capacidade: ");
+        int capacidade = scanner.nextInt();
+
+        Helicoptero.update(id, marca, modelo, cor, capacidade);
+    }
+
+    public static void editarHangar() throws Exception{
+        System.out.println("Digite o id: ");
+        int id = scanner.nextInt();
+        System.out.println("Digite o local: ");
+        String local = scanner.next();
+        System.out.println("Digite o id do avião: ");
+        int idAviao = scanner.nextInt();
+
+        Hangar.update(id, local, idAviao, Aviao.getById(idAviao));
+    }
+
+    public static void editarPista() throws Exception{
+        System.out.println("Digite o id: ");
+        int id = scanner.nextInt();
+        System.out.println("Digite o número: ");
+        String numero = scanner.next();
+        
+        Pista.update(id, numero);
+    }
+
+    public static void editarVoo() throws Exception{
+        System.out.println("Digite o id: ");
+        int id = scanner.nextInt();
+        System.out.println("Digite o número: ");
+        String numero = scanner.next();
+        System.out.println("Digite a data: ");
+        String data = scanner.next();
+        System.out.println("Digite a hora: ");
+        String hora = scanner.next();
+        System.out.println("Digite a origem: ");
+        String origem = scanner.next();
+        System.out.println("Digite o destino: ");
+        String destino = scanner.next();
+        System.out.println("Digite o nome do piloto: ");
+        String piloto = scanner.next();
+        System.out.println("Digite o nome do copiloto: ");
+        String copiloto = scanner.next();
+        System.out.println("Digite a observação: ");
+        String observacao = scanner.next();
+        System.out.println("Digite o id da pista: ");
+        int idPista = scanner.nextInt();
+        System.out.println("Digite o id do helicóptero: ");
+        int idHelicoptero = scanner.nextInt();
+        System.out.println("Digite o id do jato: ");
+        int idJato = scanner.nextInt();
+        System.out.println("Digite o id od avião: ");
+        int idAviao = scanner.nextInt();
+
+        Voo.update(id, numero, data, hora, origem, destino, piloto, copiloto, observacao, idPista, Pista.getById(idPista), idHelicoptero, Helicoptero.getById(idHelicoptero), idJato, Jato.getById(idJato), idAviao, Aviao.getById(idAviao));
+    }
+
+    public static void editarCompanhia() throws Exception{
+        System.out.println("Digite o id: ");
+        int id = scanner.nextInt();
+        System.out.println("Digite o nome: ");
+        String nome = scanner.next();
+        System.out.println("Digite o CNPJ: ");
+        String cnpj = scanner.next();
+        
+        Companhia.update(id, nome, cnpj);
     }
 
     public static Scanner scanner = new Scanner(System.in);
