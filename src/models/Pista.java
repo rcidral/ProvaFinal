@@ -1,14 +1,12 @@
 package models;
 
-import generic.*;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import DAO.DAO;
 
-public class Pista implements Database{
+public class Pista {
     
     private int id;
     private String numero;
@@ -92,11 +90,27 @@ public class Pista implements Database{
         }
     }
 
-    public void update(int id) {
-
+    public static void update(int id, String numero) throws Exception {
+        Connection update = DAO.createConnection();
+        PreparedStatement stmt = update.prepareStatement(
+            "UPDATE pista SET numero = ? WHERE id = ?;"
+        );
+        stmt.setString(1, numero);
+        stmt.setInt(2, id);
+        stmt.execute();
+        stmt.close();
+        update.close();
     }
-    public void delete(int id) {
-
+    
+    public static void delete(int id) throws Exception {
+        Connection delete = DAO.createConnection();
+        PreparedStatement stmt = delete.prepareStatement(
+            "DELETE FROM pista WHERE id = ?;"
+        );
+        stmt.setInt(1, id);
+        stmt.execute();
+        stmt.close();
+        delete.close();
     }
 
     public static Pista getById(int id) {

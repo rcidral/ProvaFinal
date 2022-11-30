@@ -122,12 +122,31 @@ public class Aviao extends Aeromodelo{
         select.close();
     }
 
-    public void update(int id) {
-
+    public static void update(int id, String marca, String modelo, String prefixo, int capacidade, Companhia companhia, int idCompanhia) throws Exception{
+        Connection update = DAO.createConnection();
+        PreparedStatement stmt = update.prepareStatement(
+            "UPDATE aviao SET marca = ?, modelo = ?, prefixo = ?, capacidade = ?, companhia_id = ? WHERE id = ?;"
+        );
+        stmt.setString(1, marca);
+        stmt.setString(2, modelo);
+        stmt.setString(3, prefixo);
+        stmt.setInt(4, capacidade);
+        stmt.setInt(5, idCompanhia);
+        stmt.setInt(6, id);
+        stmt.execute();
+        stmt.close();
+        update.close();
     }
 
-    public void delete(int id) throws Exception{
-
+    public static void delete(int id) throws Exception{
+        Connection delete = DAO.createConnection();
+        PreparedStatement stmt = delete.prepareStatement(
+            "DELETE FROM aviao WHERE id = ?;"
+        );
+        stmt.setInt(1, id);
+        stmt.execute();
+        stmt.close();
+        delete.close();
     }
 
     public static Aviao getById(int id) {

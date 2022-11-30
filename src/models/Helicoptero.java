@@ -109,12 +109,30 @@ public class Helicoptero extends Aeromodelo{
         select.close();
     }
 
-    public void update(int id) {
-
+    public static void update(int id, String marca, String modelo, String cor, int capacidade) throws Exception {
+        Connection update = DAO.createConnection();
+        PreparedStatement stmt = update.prepareStatement(
+            "UPDATE helicoptero SET marca = ?, modelo = ?, cor = ?, capacidade = ? WHERE id = ?;"
+        );
+        stmt.setString(1, marca);
+        stmt.setString(2, modelo);
+        stmt.setString(3, cor);
+        stmt.setInt(4, capacidade);
+        stmt.setInt(5, id);
+        stmt.execute();
+        stmt.close();
+        update.close();
     }
 
-    public void delete(int id) {
-
+    public static void delete(int id) throws Exception {
+        Connection delete = DAO.createConnection();
+        PreparedStatement stmt = delete.prepareStatement(
+            "DELETE FROM helicoptero WHERE id = ?;"
+        );
+        stmt.setInt(1, id);
+        stmt.execute();
+        stmt.close();
+        delete.close();
     }
 
     public static Helicoptero getById(int id) {

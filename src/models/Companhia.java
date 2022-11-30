@@ -5,9 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import DAO.DAO;
-import generic.*;
 
-public class Companhia implements Database{
+public class Companhia {
     
     private int id;
     private String nome;
@@ -112,11 +111,27 @@ public class Companhia implements Database{
         select.close();
     }
 
-    public void update(int id) {
-
+    public static void update(int id, String nome, String cnpj) throws Exception {
+        Connection update = DAO.createConnection();
+        PreparedStatement stmt = update.prepareStatement(
+            "UPDATE companhia SET nome = ?, cnpj = ? WHERE id = ?;"
+        );
+        stmt.setString(1, "Nome");
+        stmt.setString(2, "CNPJ");
+        stmt.setInt(3, id);
+        stmt.execute();
+        stmt.close();
+        update.close();
     }
 
-    public void delete(int id) {
-
+    public static void delete(int id) throws Exception {
+        Connection delete = DAO.createConnection();
+        PreparedStatement stmt = delete.prepareStatement(
+            "DELETE FROM companhia WHERE id = ?;"
+        );
+        stmt.setInt(1, id);
+        stmt.execute();
+        stmt.close();
+        delete.close();
     }
 }

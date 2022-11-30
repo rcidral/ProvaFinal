@@ -290,11 +290,37 @@ public class Voo {
         select.close();
     }
 
-    public void update() {
-
+    public static void update(int id, String numero, String data, String hora, String origem, String destino, String piloto, String copiloto, String observacao, int idPista, Pista pista, int idHelicoptero, Helicoptero helicoptero, int idJato, Jato jato, int idAviao, Aviao aviao) throws Exception {
+        Connection update = DAO.createConnection();
+        PreparedStatement stmt = update.prepareStatement(
+            "UPDATE voo SET numero = ?, data = ?, hora = ?, origem = ?, destino = ?, piloto = ?, copiloto = ?, observacao = ?, pista_id = ?, helicoptero_id = ?, jato_id = ?, aviao_id = ? WHERE id = ?;"
+        );
+        stmt.setString(1, numero);
+        stmt.setString(2, data);
+        stmt.setString(3, hora);
+        stmt.setString(4, origem);
+        stmt.setString(5, destino);
+        stmt.setString(6, piloto);
+        stmt.setString(7, copiloto);
+        stmt.setString(8, observacao);
+        stmt.setInt(9, idPista);
+        stmt.setInt(10, idHelicoptero);
+        stmt.setInt(11, idJato);
+        stmt.setInt(12, idAviao);
+        stmt.setInt(13, id);
+        stmt.execute();
+        stmt.close();
+        update.close();
     }
 
-    public void delete() {
-
+    public static void delete(int id) throws Exception {
+        Connection delete = DAO.createConnection();
+        PreparedStatement stmt = delete.prepareStatement(
+            "DELETE FROM voo WHERE id = ?;"
+        );
+        stmt.setInt(1, id);
+        stmt.execute();
+        stmt.close();
+        delete.close();
     }
 }
