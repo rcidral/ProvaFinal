@@ -19,41 +19,12 @@ public class Aviao extends Aeromodelo{
 
     }
 
-    public Aviao(int id, String marca, String modelo, String prefixoL, int prefixoN, int capacidade, Companhia companhia, int idCompanhia) throws Exception {
+    public Aviao(int id, String marca, String modelo, String prefixoL, int prefixoN, int capacidade, int idCompanhia) throws Exception {
         super(id, marca, modelo);
         this.prefixo = new Chave<String,Integer>(prefixoL, prefixoN);
         this.capacidade = capacidade;
         this.companhia = Companhia.getById(idCompanhia);
-        this.idCompanhia = idCompanhia;
-
-        
-        PreparedStatement stmt = DAO.createConnection().prepareStatement(
-            "INSERT INTO aviao (id, marca, modelo, prefixo, capacidade, companhia_id) VALUES (?, ?, ?, ?, ?, ?);"
-        );
-        stmt.setInt(1, id);
-        stmt.setString(2, marca);
-        stmt.setString(3, modelo);
-        stmt.setString(4, prefixo.toString());
-        stmt.setInt(5, capacidade);
-        stmt.setInt(6, idCompanhia);
-
-        ResultSet rs = DAO.createConnection().createStatement().executeQuery(
-            "SELECT * FROM companhia WHERE id = "+ idCompanhia + ";"
-        );
-        if(rs.last() == false) {
-            throw new Exception("Companhia inexistente! ");
-        } else {
-            rs = DAO.createConnection().createStatement().executeQuery(
-            "SELECT companhia_id FROM aviao WHERE id = " + id + ";"
-            );
-            if(rs.last() == true) {
-                throw new Exception("Somente uma companhia por avião! ");
-            } else {
-                stmt.execute();
-                stmt.close();
-            }
-        }
-        
+        this.idCompanhia = idCompanhia;        
     }
 
     public Aviao(String marca, String modelo, String prefixoL, int prefixoN, int capacidade, Companhia companhia, int idCompanhia) throws Exception {
@@ -62,6 +33,7 @@ public class Aviao extends Aeromodelo{
         this.capacidade = capacidade;
         this.companhia = companhia;
         this.idCompanhia = idCompanhia;
+        this.companhia = Companhia.getById(idCompanhia);
 
         PreparedStatement stmt = DAO.createConnection().prepareStatement(
             "INSERT INTO aviao (marca, modelo, prefixo, capacidade, companhia_id) VALUES (?, ?, ?, ?, ?);"

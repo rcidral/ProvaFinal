@@ -59,9 +59,10 @@ public class App {
                                     switch(op) {
                                         case 1: {
                                             try {
-                                               cadastrarAvião();
+                                               cadastrarAviao();
                                             } catch (Exception e) {
                                                System.out.println("Erro ao cadastrar aeromodelo" + "\n" + "\n" + e.getMessage());
+                                               scanner.next();
                                             }
                                             break;
                                         }
@@ -434,7 +435,7 @@ public class App {
         scanner.close();
     }
 
-    public static void cadastrarAvião() throws Exception {
+    public static void cadastrarAviao() throws Exception {
         System.out.println("Digite o id: ");
         int id = scanner.nextInt();
         System.out.println("Digite a marca: ");
@@ -450,6 +451,7 @@ public class App {
             System.out.println("Digite os quatro(4) números do prefixo: ");
             prefixoN = scanner.nextInt();
             conc = prefixoL + Integer.toString(prefixoN);
+            scanner.next();
         }
         int capacidade = -1;
         while(capacidade <= 0) {
@@ -459,7 +461,7 @@ public class App {
         System.out.println("Digite o id da companhia: ");
         int idCompanhia = scanner.nextInt();
 
-        new Aviao(id, marca, modelo, prefixoL, prefixoN, capacidade, Companhia.getById(idCompanhia), idCompanhia);
+        new Aviao(id, marca, modelo, prefixoL, prefixoN, capacidade, idCompanhia);
     }
 
     public static void cadastrarJato() throws Exception{

@@ -87,8 +87,16 @@ public class Companhia {
         return c.getId() == this.getId();
     }
 
-    public static Companhia getById(int id) {
-        return new Companhia();
+    public static Companhia getById(int id) throws Exception {
+        PreparedStatement select = DAO.createConnection().prepareStatement("SELECT * FROM companhia WHERE id = ?;");
+        select.setInt(1, id);
+        ResultSet rs = select.executeQuery();
+
+        if (rs.next()) {
+            return new Companhia(rs.getInt("id"), rs.getString("nome"), rs.getString("cnpj"));
+        }
+
+        throw new Exception("Companhia inexistente! ");
     }
 
     public static void select() throws Exception {
