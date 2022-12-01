@@ -31,7 +31,6 @@ public class Aviao extends Aeromodelo{
         super(marca, modelo);
         this.prefixo = new Chave<String,Integer>(prefixoL, prefixoN);
         this.capacidade = capacidade;
-        this.companhia = companhia;
         this.idCompanhia = idCompanhia;
         this.companhia = Companhia.getById(idCompanhia);
 

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import DAO.DAO;
+import generic.Aeromodelo;
 import generic.Chave;
 
 public class Voo {
@@ -71,7 +72,7 @@ public class Voo {
 
     }
 
-    public Voo(String numeroL, int numeroN, String data, String hora, String origem, String destino, String piloto, String copiloto, String observacao, int idPista, char tipo, Pista pista, int idHelicoptero, Helicoptero helicoptero, int idJato, Jato jato, int idAviao, Aviao aviao) throws Exception {
+    public Voo(String numeroL, int numeroN, String data, String hora, String origem, String destino, String piloto, String copiloto, String observacao, int idPista, Pista pista, int tipo, Aeromodelo aeromodelo, int idAeromodelo) throws Exception {
         this.numero = new Chave<String,Integer>(numeroL, numeroN);
         this.data = data;
         this.hora = hora;
@@ -82,34 +83,66 @@ public class Voo {
         this.observacao = observacao;
         this.idPista = idPista;
         this.pista = pista;
-        this.idHelicoptero = idHelicoptero;
-        this.helicoptero = helicoptero;
-        this.idJato = idJato;
-        this.jato = jato;
-        this.idAviao = idAviao;
-        this.aviao = aviao;
+        if (tipo == 1) {
+            this.idHelicoptero = idAeromodelo;
+            this.helicoptero = (Helicoptero) aeromodelo;
 
-        PreparedStatement stmt = DAO.createConnection().prepareStatement(
-            "INSERT INTO voo (numero, data, hora, origem, destino, piloto, copiloto, observacao, pista_id, helicoptero_id, jato_id, aviao_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
-        );
-        stmt.setString(1, numero.toString());
-        stmt.setString(2, data);
-        stmt.setString(3, hora);
-        stmt.setString(4, origem);
-        stmt.setString(5, destino);
-        stmt.setString(6, piloto);
-        stmt.setString(7, copiloto);
-        stmt.setString(8, observacao);
-        stmt.setInt(9, idPista);
-        stmt.setInt(10, idHelicoptero);
-        stmt.setInt(11, idJato);
-        stmt.setInt(13, idAviao);
-        stmt.execute();
-        stmt.close();
+            PreparedStatement stmt = DAO.createConnection().prepareStatement(
+                "INSERT INTO voo (numero, data, hora, origem, destino, piloto, copiloto, observacao, pista_id, helicoptero_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+            );
+            stmt.setString(1, numero.toString());
+            stmt.setString(2, data);
+            stmt.setString(3, hora);
+            stmt.setString(4, origem);
+            stmt.setString(5, destino);
+            stmt.setString(6, piloto);
+            stmt.setString(7, copiloto);
+            stmt.setString(8, observacao);
+            stmt.setInt(9, idPista);
+            stmt.setInt(10, idHelicoptero);
+            stmt.execute();
+            stmt.close();
+        } else if (tipo == 2) {
+            this.idJato = idAeromodelo;
+            this.jato = (Jato) aeromodelo;
+
+            PreparedStatement stmt = DAO.createConnection().prepareStatement(
+                "INSERT INTO voo (numero, data, hora, origem, destino, piloto, copiloto, observacao, pista_id, jato_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+            );
+            stmt.setString(1, numero.toString());
+            stmt.setString(2, data);
+            stmt.setString(3, hora);
+            stmt.setString(4, origem);
+            stmt.setString(5, destino);
+            stmt.setString(6, piloto);
+            stmt.setString(7, copiloto);
+            stmt.setString(8, observacao);
+            stmt.setInt(9, idPista);
+            stmt.setInt(10, idJato);
+            stmt.execute();
+            stmt.close();
+        } else if (tipo == 3) {
+            this.idAviao = idAeromodelo;
+            this.aviao = (Aviao) aeromodelo;
+
+            PreparedStatement stmt = DAO.createConnection().prepareStatement(
+                "INSERT INTO voo (numero, data, hora, origem, destino, piloto, copiloto, observacao, pista_id, aviao_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+            );
+            stmt.setString(1, numero.toString());
+            stmt.setString(2, data);
+            stmt.setString(3, hora);
+            stmt.setString(4, origem);
+            stmt.setString(5, destino);
+            stmt.setString(6, piloto);
+            stmt.setString(7, copiloto);
+            stmt.setString(8, observacao);
+            stmt.setInt(9, idPista);
+            stmt.setInt(10, idAviao);
+            stmt.execute();
+            stmt.close();
+        }
     }
 
-    // ResultSet voo
-    
     public void setId(int id) {
         this.id = id;
     }
