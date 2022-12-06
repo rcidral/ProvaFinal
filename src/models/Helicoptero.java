@@ -139,4 +139,16 @@ public class Helicoptero extends Aeromodelo{
         return new Helicoptero();
     }
 
+    @Override
+    public void update() throws Exception {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void delete() throws Exception {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

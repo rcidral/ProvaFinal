@@ -138,4 +138,16 @@ public class Jato extends Aeromodelo{
     public static Jato getById(int id) {
         return new Jato();
     }
+
+    @Override
+    public void update() throws Exception {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void delete() throws Exception {
+        // TODO Auto-generated method stub
+        
+    }
 }

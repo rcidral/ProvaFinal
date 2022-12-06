@@ -21,9 +21,9 @@ USE `aeroporto` ;
 -- Table `aeroporto`.`companhia`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `aeroporto`.`companhia` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(255) NOT NULL,
-  `cnpj` VARCHAR(14) NOT NULL,
+  `id` INT UNSIGNED AUTO_INCREMENT,
+  `nome` VARCHAR(255),
+  `cnpj` VARCHAR(255),
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -32,12 +32,12 @@ ENGINE = InnoDB;
 -- Table `aeroporto`.`aviao`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `aeroporto`.`aviao` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `marca` VARCHAR(255) NOT NULL,
+  `id` INT UNSIGNED AUTO_INCREMENT,
+  `marca` VARCHAR(255),
   `modelo` VARCHAR(255) NULL,
-  `prefixo` VARCHAR(3) NULL,
+  `prefixo` VARCHAR(255) NULL,
   `capacidade` INT NULL,
-  `companhia_id` INT UNSIGNED NOT NULL,
+  `companhia_id` INT UNSIGNED,
   PRIMARY KEY (`id`),
   INDEX `fk_aviao_companhia1_idx` (`companhia_id` ASC) ,
   CONSTRAINT `fk_aviao_companhia1`
@@ -52,9 +52,9 @@ ENGINE = InnoDB;
 -- Table `aeroporto`.`hangar`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `aeroporto`.`hangar` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `local` VARCHAR(255) NOT NULL,
-  `aviao_id` INT UNSIGNED NOT NULL,
+  `id` INT UNSIGNED AUTO_INCREMENT,
+  `local` VARCHAR(255),
+  `aviao_id` INT UNSIGNED,
   PRIMARY KEY (`id`),
   INDEX `fk_hangar_aviao_idx` (`aviao_id` ASC) ,
   CONSTRAINT `fk_hangar_aviao`
@@ -69,8 +69,8 @@ ENGINE = InnoDB;
 -- Table `aeroporto`.`pista`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `aeroporto`.`pista` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `numero` VARCHAR(255) NOT NULL,
+  `id` INT UNSIGNED AUTO_INCREMENT,
+  `numero` VARCHAR(255),
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -79,11 +79,11 @@ ENGINE = InnoDB;
 -- Table `aeroporto`.`helicoptero`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `aeroporto`.`helicoptero` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `marca` VARCHAR(255) NOT NULL,
+  `id` INT UNSIGNED AUTO_INCREMENT,
+  `marca` VARCHAR(255),
   `modelo` VARCHAR(255) NULL,
-  `cor` VARCHAR(255) NOT NULL,
-  `capacidade` INT NOT NULL,
+  `cor` VARCHAR(255),
+  `capacidade` INT,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -92,11 +92,11 @@ ENGINE = InnoDB;
 -- Table `aeroporto`.`jato`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `aeroporto`.`jato` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `marca` VARCHAR(255) NOT NULL,
-  `modelo` VARCHAR(255) NOT NULL,
-  `cor` VARCHAR(255) NOT NULL,
-  `velocidade` INT NOT NULL,
+  `id` INT UNSIGNED AUTO_INCREMENT,
+  `marca` VARCHAR(255),
+  `modelo` VARCHAR(255),
+  `cor` VARCHAR(255),
+  `velocidade` INT,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -105,19 +105,19 @@ ENGINE = InnoDB;
 -- Table `aeroporto`.`voo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `aeroporto`.`voo` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `numero` VARCHAR(255) NOT NULL,
-  `data` VARCHAR(8) NOT NULL,
-  `hora` VARCHAR(4) NOT NULL,
-  `origem` VARCHAR(3) NOT NULL,
-  `destino` VARCHAR(3) NOT NULL,
-  `piloto` VARCHAR(255) NOT NULL,
-  `copiloto` VARCHAR(255) NOT NULL,
-  `observacao` VARCHAR(255) NOT NULL,
-  `jato_id` INT UNSIGNED NOT NULL,
-  `pista_id` INT UNSIGNED NOT NULL,
-  `helicoptero_id` INT UNSIGNED NOT NULL,
-  `aviao_id` INT UNSIGNED NOT NULL,
+  `id` INT UNSIGNED AUTO_INCREMENT,
+  `numero` VARCHAR(255),
+  `data` VARCHAR(255),
+  `hora` VARCHAR(255),
+  `origem` VARCHAR(255),
+  `destino` VARCHAR(255),
+  `piloto` VARCHAR(255),
+  `copiloto` VARCHAR(255),
+  `observacao` VARCHAR(255),
+  `jato_id` INT UNSIGNED,
+  `pista_id` INT UNSIGNED,
+  `helicoptero_id` INT UNSIGNED,
+  `aviao_id` INT UNSIGNED,
   PRIMARY KEY (`id`),
   INDEX `fk_voo_jato1_idx` (`jato_id` ASC) ,
   INDEX `fk_voo_pista1_idx` (`pista_id` ASC) ,

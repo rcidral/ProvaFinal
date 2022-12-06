@@ -1,6 +1,6 @@
 package generic;
 
-public abstract class Aeromodelo {
+public abstract class Aeromodelo implements dbMandatory{
     
     private int id;
     protected String marca;
@@ -19,7 +19,6 @@ public abstract class Aeromodelo {
     public Aeromodelo(String marca, String modelo) {
         this.marca = marca; 
         this.modelo = modelo;
-        System.out.println("Aqui");
     } 
 
     public void setId(int id) {
@@ -67,6 +66,18 @@ public abstract class Aeromodelo {
 
     public static Aeromodelo getById(int id) {
         return new Aeromodelo() {
+
+            @Override
+            public void update() throws Exception {
+                
+                
+            }
+
+            @Override
+            public void delete() throws Exception {
+               
+                
+            }
             
         };
     }

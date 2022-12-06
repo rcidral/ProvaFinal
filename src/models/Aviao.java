@@ -8,7 +8,7 @@ import DAO.*;
 import generic.*;
 
 
-public class Aviao extends Aeromodelo{
+public class Aviao extends Aeromodelo {
 
     private Chave<String, Integer> prefixo;
     private int capacidade;
@@ -140,6 +140,18 @@ public class Aviao extends Aeromodelo{
 
     public static Aviao getById(int id) {
         return new Aviao();
+    }
+
+    @Override
+    public void update() throws Exception {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void delete() throws Exception {
+        // TODO Auto-generated method stub
+        
     }
     
 }
