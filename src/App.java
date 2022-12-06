@@ -527,7 +527,7 @@ public class App {
         String numeroL = "";
         int numeroN = 0;
         String conc = "";
-        while(conc.length() != 7) {
+        while(conc.length() < 7) {
             System.out.println("Digite as três(3) letras da numeração: ");
             numeroL = scanner.next();
             System.out.println("Digite os seis(6) números da numeração: ");
@@ -550,17 +550,17 @@ public class App {
         String observacao = scanner.next();
         System.out.println("Digite o id da pista: ");
         int idPista = scanner.nextInt();
-        System.out.println("1 - Avião." + "\n" + 
+        System.out.println("1 - Helicóptero." + "\n" + 
             "2 - Jato." + "\n" + 
-            "3 - Helicóptero." + "\n" +
+            "3 - Avião." + "\n" +
             "Digite qual tipo de aeronave deseja cadastrar: ");
         int tipo = scanner.nextInt();
         System.out.println("Digite o id do aeromodelo: ");
         int idAeromodelo = scanner.nextInt();
-        while(tipo < 1 || tipo > 3) {
-            System.out.println("1 - Avião." + "\n" + 
+        while(tipo < 1 && tipo > 3) {
+            System.out.println("1 - Helicóptero." + "\n" + 
             "2 - Jato." + "\n" + 
-            "3 - Helicóptero." + "\n" +
+            "3 - Avião." + "\n" +
             "Opção inválida, digite novamente: ");
             tipo = scanner.nextInt();
             System.out.println("Digite o id do aeromodelo: ");

@@ -3,6 +3,7 @@ package models;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Types;
 
 import DAO.DAO;
 import generic.Aeromodelo;
@@ -27,6 +28,8 @@ public class Voo {
     private Jato jato; 
     private int idAviao;
     private Aviao aviao;
+    private int idAeromodelo;
+    private Aeromodelo aeromodelo;
 
     public Voo() {
 
@@ -83,12 +86,13 @@ public class Voo {
         this.observacao = observacao;
         this.idPista = idPista;
         this.pista = pista;
+        this.idAeromodelo = idAeromodelo;
+        this.aeromodelo = Aeromodelo.getById(idAeromodelo);
+        
         if (tipo == 1) {
-            this.idHelicoptero = idAeromodelo;
-            this.helicoptero = (Helicoptero) aeromodelo;
-
+            System.out.println(idAeromodelo);
             PreparedStatement stmt = DAO.createConnection().prepareStatement(
-                "INSERT INTO voo (numero, data, hora, origem, destino, piloto, copiloto, observacao, pista_id, helicoptero_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+                "INSERT INTO voo (numero, data, hora, origem, destino, piloto, copiloto, observacao, pista_id, helicoptero_id, jato_id, aviao_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
             );
             stmt.setString(1, numero.toString());
             stmt.setString(2, data);
@@ -99,15 +103,14 @@ public class Voo {
             stmt.setString(7, copiloto);
             stmt.setString(8, observacao);
             stmt.setInt(9, idPista);
-            stmt.setInt(10, idHelicoptero);
+            stmt.setInt(10, idAeromodelo);
+            stmt.setNull(11, Types.NULL);
+            stmt.setNull(12, Types.NULL);
             stmt.execute();
             stmt.close();
         } else if (tipo == 2) {
-            this.idJato = idAeromodelo;
-            this.jato = (Jato) aeromodelo;
-
             PreparedStatement stmt = DAO.createConnection().prepareStatement(
-                "INSERT INTO voo (numero, data, hora, origem, destino, piloto, copiloto, observacao, pista_id, jato_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+                "INSERT INTO voo (numero, data, hora, origem, destino, piloto, copiloto, observacao, pista_id, helicoptero_id, jato_id, aviao_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
             );
             stmt.setString(1, numero.toString());
             stmt.setString(2, data);
@@ -118,15 +121,14 @@ public class Voo {
             stmt.setString(7, copiloto);
             stmt.setString(8, observacao);
             stmt.setInt(9, idPista);
-            stmt.setInt(10, idJato);
+            stmt.setNull(10, Types.NULL);
+            stmt.setInt(11, idAeromodelo);
+            stmt.setNull(12, Types.NULL);
             stmt.execute();
             stmt.close();
         } else if (tipo == 3) {
-            this.idAviao = idAeromodelo;
-            this.aviao = (Aviao) aeromodelo;
-
             PreparedStatement stmt = DAO.createConnection().prepareStatement(
-                "INSERT INTO voo (numero, data, hora, origem, destino, piloto, copiloto, observacao, pista_id, aviao_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+                "INSERT INTO voo (numero, data, hora, origem, destino, piloto, copiloto, observacao, pista_id, helicoptero_id, jato_id, aviao_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
             );
             stmt.setString(1, numero.toString());
             stmt.setString(2, data);
@@ -137,7 +139,9 @@ public class Voo {
             stmt.setString(7, copiloto);
             stmt.setString(8, observacao);
             stmt.setInt(9, idPista);
-            stmt.setInt(10, idAviao);
+            stmt.setNull(10, Types.NULL);
+            stmt.setNull(11, Types.NULL);
+            stmt.setInt(12, idAeromodelo);
             stmt.execute();
             stmt.close();
         }
@@ -279,6 +283,22 @@ public class Voo {
         return aviao;
     }
 
+    public void setAeromodelo(Aeromodelo aeromodelo) {
+        this.aeromodelo = aeromodelo;
+    }
+
+    public Aeromodelo getAeromodelo() {
+        return aeromodelo;
+    }
+
+    public void setIdAeromodelo(int id) {
+        this.idAeromodelo = id;
+    }
+
+    public int getIdAeromodelo() {
+        return idAeromodelo;
+    }
+
     @Override
     public String toString() {
         return "Voo{" + "id=" + id + ", numero=" + numero + ", data=" + data + ", hora=" + hora + ", origem=" + origem + ", destino=" + destino + ", piloto=" + piloto + ", copiloto=" + copiloto + ", observacao=" + observacao + ", idPista=" + idPista + ", pista=" + pista + ", idHelicoptero=" + idHelicoptero + ", helicoptero=" + helicoptero + ", idJato=" + idJato + ", jato=" + jato + ", idAviao=" + idAviao + ", aviao=" + aviao + '}';
@@ -289,7 +309,7 @@ public class Voo {
         ResultSet rs = select.createStatement().executeQuery(
             "SELECT * FROM voo;"
         );
-        while (rs.next()) {
+        while (rs.next()) { 
             System.out.println(
                 "=======================================" + "\n" +
                 "Id: " + 
@@ -312,12 +332,12 @@ public class Voo {
                 rs.getString("observacao") + "\n" +
                 "Id da pista: " +
                 rs.getInt("pista_id") + "\n" +
-                "Id do helicoptero: " +
-                rs.getInt("helicoptero_id") + "\n" +
+                "Id do helicoptero: " + 
+                (rs.getInt("helicoptero_id") > 0 ? Integer.toString(rs.getInt("helicoptero_id")) : "") + "\n" +
                 "Id do jato: " +
-                rs.getInt("jato_id") + "\n" +
+                (rs.getInt("jato_id") > 0 ? Integer.toString(rs.getInt("jato_id")) : "") + "\n" +
                 "Id do aviao: " +
-                rs.getInt("aviao_id") + "\n" +
+                (rs.getInt("aviao_id") > 0 ? Integer.toString(rs.getInt("aviao_id")) : "") + "\n" +
                 "======================================="
             );
         }
