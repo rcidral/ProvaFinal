@@ -91,9 +91,13 @@ public class Companhia {
         PreparedStatement select = DAO.createConnection().prepareStatement("SELECT * FROM companhia WHERE id = ?;");
         select.setInt(1, id);
         ResultSet rs = select.executeQuery();
-
+        
         if (rs.next()) {
-            return new Companhia(rs.getInt("id"), rs.getString("nome"), rs.getString("cnpj"));
+            Companhia companhia = new Companhia();
+            companhia.setId(rs.getInt("id"));
+            companhia.setNome(rs.getString("nome"));
+            companhia.setCnpj(rs.getString("cnpj"));
+            return companhia;
         }
 
         throw new Exception("Companhia inexistente! ");

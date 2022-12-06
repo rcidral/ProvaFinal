@@ -458,8 +458,10 @@ public class App {
         }
         System.out.println("Digite o id da companhia: ");
         int idCompanhia = scanner.nextInt();
-
-        new Aviao(marca, modelo, prefixoL, prefixoN, capacidade, Companhia.getById(idCompanhia), idCompanhia);
+        Companhia companhia = Companhia.getById(idCompanhia);
+        System.out.println("Aqui companhia");
+        new Aviao(marca, modelo, prefixoL, prefixoN, capacidade, companhia, idCompanhia);
+        
     }
 
     public static void cadastrarJato() throws Exception{

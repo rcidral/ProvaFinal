@@ -19,6 +19,7 @@ public abstract class Aeromodelo {
     public Aeromodelo(String marca, String modelo) {
         this.marca = marca; 
         this.modelo = modelo;
+        System.out.println("Aqui");
     } 
 
     public void setId(int id) {
