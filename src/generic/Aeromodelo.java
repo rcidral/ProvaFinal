@@ -1,6 +1,6 @@
 package generic;
 
-public abstract class Aeromodelo {
+public abstract class Aeromodelo implements dbMandatory{
     
     private int id;
     protected String marca;
@@ -62,5 +62,23 @@ public abstract class Aeromodelo {
         }
         Aeromodelo aeronave = (Aeromodelo) obj;
         return aeronave.getId() == getId();
+    }
+
+    public static Aeromodelo getById(int id) {
+        return new Aeromodelo() {
+
+            @Override
+            public void update() throws Exception {
+                
+                
+            }
+
+            @Override
+            public void delete() throws Exception {
+               
+                
+            }
+            
+        };
     }
 }
